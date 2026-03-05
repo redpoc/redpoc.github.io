@@ -7,6 +7,118 @@
     <meta name="description" content="RedPoc Team Members">
     <title>Team | RedPoc</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .member-card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
+            padding: 35px 30px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 42, 42, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 42, 42, 0.05);
+        }
+
+        .member-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .avatar-wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            border: 2px solid var(--primary-red);
+            box-shadow: 0 0 20px var(--primary-red-glow);
+            overflow: hidden;
+            background: rgba(255, 42, 42, 0.1);
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .member-card:hover .avatar-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .member-role {
+            font-family: var(--font-mono);
+            color: var(--primary-red);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .member-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--surface-border);
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            transition: var(--transition);
+        }
+
+        .github-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .github-link:hover {
+            color: var(--text-main);
+            border-color: var(--primary-red);
+            background: rgba(255, 42, 42, 0.08);
+        }
+    </style>
 </head>
 
 <body>
@@ -34,36 +146,57 @@
         </section>
 
         <section>
-            <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+            <div class="team-grid">
 
-                <div class="card animate delay-1" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: rgba(255,42,42,0.1); border: 1px solid var(--primary-red); border-radius: 50%; margin: 0 auto 20px auto; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 2rem; color: var(--primary-red);">
-                        D
+                <div class="member-card animate delay-1">
+                    <div class="avatar-wrapper">
+                        <img src="https://github.com/drkim.png" alt="drkim GitHub Avatar"
+                            onerror="this.src='https://ui-avatars.com/api/?name=drkim&background=1a0a0a&color=ff2a2a&size=100'">
                     </div>
-                    <h3>drkim</h3>
-                    <span class="card-tag" style="display: block; margin-bottom: 15px;">Co-Founder</span>
-                    <p>Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <div class="member-name">drkim</div>
+                    <span class="member-role">Co-Founder</span>
+                    <p class="member-desc">Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <a href="https://github.com/drkim" target="_blank" class="github-link">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                        @drkim
+                    </a>
                 </div>
 
-                <div class="card animate delay-2" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: rgba(255,42,42,0.1); border: 1px solid var(--primary-red); border-radius: 50%; margin: 0 auto 20px auto; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 2rem; color: var(--primary-red);">
-                        R
+                <div class="member-card animate delay-2">
+                    <div class="avatar-wrapper">
+                        <img src="https://github.com/redyank.png" alt="redyank GitHub Avatar"
+                            onerror="this.src='https://ui-avatars.com/api/?name=redyank&background=1a0a0a&color=ff2a2a&size=100'">
                     </div>
-                    <h3>redyank</h3>
-                    <span class="card-tag" style="display: block; margin-bottom: 15px;">Co-Founder</span>
-                    <p>Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <div class="member-name">redyank</div>
+                    <span class="member-role">Co-Founder</span>
+                    <p class="member-desc">Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <a href="https://github.com/redyank" target="_blank" class="github-link">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                        @redyank
+                    </a>
                 </div>
 
-                <div class="card animate delay-3" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: rgba(255,42,42,0.1); border: 1px solid var(--primary-red); border-radius: 50%; margin: 0 auto 20px auto; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 2rem; color: var(--primary-red);">
-                        W
+                <div class="member-card animate delay-3">
+                    <div class="avatar-wrapper">
+                        <img src="https://github.com/dyingman1.png" alt="dyingman1 GitHub Avatar"
+                            onerror="this.src='https://ui-avatars.com/api/?name=dyingman1&background=1a0a0a&color=ff2a2a&size=100'">
                     </div>
-                    <h3>dyingman1</h3>
-                    <span class="card-tag" style="display: block; margin-bottom: 15px;">Co-Founder</span>
-                    <p>Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <div class="member-name">dyingman1</div>
+                    <span class="member-role">Co-Founder</span>
+                    <p class="member-desc">Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <a href="https://github.com/dyingman1" target="_blank" class="github-link">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                        @dyingman1
+                    </a>
                 </div>
 
             </div>
