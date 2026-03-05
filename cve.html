@@ -153,21 +153,25 @@
             <div class="accordion-card" id="cve-1">
                 <div class="accordion-header" onclick="toggleAccordion('cve-1')">
                     <div class="accordion-header-left">
-                        <span class="accordion-tag">CVE-2026-XXXX</span>
-                        <span class="accordion-title">Server-Side Request Forgery in Example Library</span>
+                        <span class="accordion-tag">CVE-2026-29780</span>
+                        <span class="accordion-title">Path Traversal in Official Example Script Leading to Arbitrary
+                            File Write</span>
                     </div>
                     <div class="accordion-header-right">
-                        <span class="severity-badge">CRITICAL (9.8)</span>
+                        <span class="severity-badge">Moderate (5.5)</span>
                         <div class="accordion-toggle">+</div>
                     </div>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-body-inner">
-                        <p><strong>Impact:</strong> Allowed unauthenticated attackers to pivot into internal networks
-                            and access sensitive cloud metadata services, leading to potential RCE.</p>
+                        <p><strong>Summary:</strong> The official example script
+                            examples/recursively_extract_attachments.py contains a path traversal vulnerability that
+                            allows arbitrary file write outside the intended output directory. Attachment filenames
+                            extracted from parsed emails are directly used to construct output file paths without any
+                            sanitization, allowing an attacker-controlled filename to escape the target directory.</p>
                         <p><strong>Contribution type:</strong> Vulnerability Discovery &amp; Report (기여)</p>
                         <div class="detail-footer">
-                            <span>Disclosed: 2026-02-15</span>
+                            <span>Disclosed: 2026-03-05</span>
                             <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">NVD Advisory</a>
                         </div>
                     </div>
