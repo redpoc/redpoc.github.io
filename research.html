@@ -18,45 +18,50 @@
             <h1>Red<span>Poc</span></h1>
         </a>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="cve.html">CVE Archive</a>
-            <a href="research.html" class="active">Research</a>
-            <a href="team.html">Team</a>
+            <a href="index.html" data-i18n="nav_home">홈</a>
+            <a href="cve.html" data-i18n="nav_cve">CVE 아카이브</a>
+            <a href="research.html" class="active" data-i18n="nav_research">연구</a>
+            <a href="team.html" data-i18n="nav_team">팀</a>
+            <button id="lang-toggle-btn" onclick="toggleLanguage()"
+                style="background:transparent;border:1px solid rgba(255,255,255,0.15);color:#888;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:0.8rem;font-family:inherit;transition:all 0.3s;margin-left:10px;"
+                onmouseover="this.style.borderColor='#ff2a2a';this.style.color='#ff2a2a'"
+                onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#888'">English</button>
         </nav>
     </header>
 
     <div class="container">
         <section class="hero">
-            <div class="hero-badge">Publications</div>
-            <h2>Security Research</h2>
-            <p>Deep dives into exploitation techniques, reverse engineering, and offensive methodology.</p>
+            <div class="hero-badge" data-i18n="research_badge">발행물</div>
+            <h2 data-i18n="research_hero_title">보안 연구</h2>
+            <p data-i18n="research_hero_desc">익스플로잇 기법, 리버스 엔지니어링, 오펜시브 방법론에 대한 심층 분석.</p>
         </section>
 
         <section>
             <div class="grid">
                 <div class="card animate delay-1">
                     <div class="card-header">
-                        <span class="card-tag">Article</span>
+                        <span class="card-tag" data-i18n="research_card1_tag">아티클</span>
                     </div>
-                    <h3>Bypassing Modern EDRs with Custom Syscalls</h3>
-                    <p>An exploration of direct system calls and how to evade API hooking dynamically while maintaining
-                        stability in payloads.</p>
+                    <h3 data-i18n="research_card1_title">커스텀 시스콜로 최신 EDR 우회하기</h3>
+                    <p data-i18n="research_card1_desc">직접 시스템 콜과 페이로드 안정성을 유지하면서 API 후킹을 동적으로 회피하는 방법에 대한 탐구.</p>
                     <div class="card-footer" style="margin-top: 20px;">
-                        <span>March 2026</span>
-                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">Read More</a>
+                        <span data-i18n="research_card1_date">2026년 3월</span>
+                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
+                            data-i18n="research_read_more">자세히 보기</a>
                     </div>
                 </div>
 
                 <div class="card animate delay-2">
                     <div class="card-header">
-                        <span class="card-tag">Writeup</span>
+                        <span class="card-tag" data-i18n="research_card2_tag">라이트업</span>
                     </div>
-                    <h3>Analysis of the UploadServer RCE</h3>
-                    <p>Detailed breakdown of how we achieved remote code execution by chaining vulnerabilities in the
-                        Python UploadServer module.</p>
+                    <h3 data-i18n="research_card2_title">UploadServer RCE 분석</h3>
+                    <p data-i18n="research_card2_desc">Python UploadServer 모듈의 취약점 체이닝을 통해 원격 코드 실행을 달성한 과정에 대한 상세한 분석.
+                    </p>
                     <div class="card-footer" style="margin-top: 20px;">
-                        <span>February 2026</span>
-                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">Read More</a>
+                        <span data-i18n="research_card2_date">2026년 2월</span>
+                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
+                            data-i18n="research_read_more">자세히 보기</a>
                     </div>
                 </div>
             </div>
@@ -64,8 +69,9 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 RedPoc Team | All Rights Reserved</p>
+        <p data-i18n="footer_copy">© 2026 RedPoc Team | All Rights Reserved</p>
     </footer>
+    <script src="i18n.js"></script>
 </body>
 
 </html>

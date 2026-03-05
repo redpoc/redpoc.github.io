@@ -134,18 +134,22 @@
             <h1>Red<span>Poc</span></h1>
         </a>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="cve.html" class="active">CVE Archive</a>
-            <a href="research.html">Research</a>
-            <a href="team.html">Team</a>
+            <a href="index.html" data-i18n="nav_home">홈</a>
+            <a href="cve.html" class="active" data-i18n="nav_cve">CVE 아카이브</a>
+            <a href="research.html" data-i18n="nav_research">연구</a>
+            <a href="team.html" data-i18n="nav_team">팀</a>
+            <button id="lang-toggle-btn" onclick="toggleLanguage()"
+                style="background:transparent;border:1px solid rgba(255,255,255,0.15);color:#888;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:0.8rem;font-family:inherit;transition:all 0.3s;margin-left:10px;"
+                onmouseover="this.style.borderColor='#ff2a2a';this.style.color='#ff2a2a'"
+                onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#888'">English</button>
         </nav>
     </header>
 
     <div class="container">
         <section class="hero">
-            <div class="hero-badge">Vulnerability Archive</div>
-            <h2>Official Contributions</h2>
-            <p>A repository of our discovered vulnerabilities, registered CVEs/KVEs, and coordinated disclosures.</p>
+            <div class="hero-badge" data-i18n="cve_badge">취약점 아카이브</div>
+            <h2 data-i18n="cve_hero_title">공식 기여 목록</h2>
+            <p data-i18n="cve_hero_desc">발굴한 취약점, 등록된 CVE/KVE, 그리고 조율된 공개 내역을 모아둔 저장소입니다.</p>
         </section>
 
         <section>
@@ -154,8 +158,7 @@
                 <div class="accordion-header" onclick="toggleAccordion('cve-1')">
                     <div class="accordion-header-left">
                         <span class="accordion-tag">CVE-2026-29780</span>
-                        <span class="accordion-title">Path Traversal in Official Example Script Leading to Arbitrary
-                            File Write</span>
+                        <span class="accordion-title" data-i18n="cve1_title">공식 예제 스크립트의 경로 탐색 취약점으로 인한 임의 파일 쓰기</span>
                     </div>
                     <div class="accordion-header-right">
                         <span class="severity-badge">Moderate (5.5)</span>
@@ -164,15 +167,19 @@
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-body-inner">
-                        <p><strong>Summary:</strong> The official example script
-                            examples/recursively_extract_attachments.py contains a path traversal vulnerability that
-                            allows arbitrary file write outside the intended output directory. Attachment filenames
-                            extracted from parsed emails are directly used to construct output file paths without any
-                            sanitization, allowing an attacker-controlled filename to escape the target directory.</p>
-                        <p><strong>Contribution type:</strong> Vulnerability Discovery &amp; Report (기여)</p>
+                        <p>
+                            <strong data-i18n="cve1_summary_label">요약:</strong>
+                            <span data-i18n="cve1_summary">공식 예제 스크립트 examples/recursively_extract_attachments.py에 경로 탐색
+                                취약점이 존재하여 의도된 출력 디렉토리 외부에 임의의 파일을 쓸 수 있습니다.</span>
+                        </p>
+                        <p>
+                            <strong data-i18n="cve1_contrib_label">기여 유형:</strong>
+                            <span data-i18n="cve1_contrib">취약점 발굴 및 보고</span>
+                        </p>
                         <div class="detail-footer">
-                            <span>Disclosed: 2026-03-05</span>
-                            <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">NVD Advisory</a>
+                            <span data-i18n="cve1_disclosed">공개일: 2026-03-05</span>
+                            <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
+                                data-i18n="cve1_btn">NVD 어드바이저리</a>
                         </div>
                     </div>
                 </div>
@@ -183,7 +190,7 @@
                 <div class="accordion-header" onclick="toggleAccordion('cve-2')">
                     <div class="accordion-header-left">
                         <span class="accordion-tag">KVE-2026-XXXX</span>
-                        <span class="accordion-title">Authentication Bypass in Enterprise Platform</span>
+                        <span class="accordion-title" data-i18n="cve2_title">엔터프라이즈 플랫폼의 인증 우회</span>
                     </div>
                     <div class="accordion-header-right">
                         <span class="severity-badge">HIGH (8.1)</span>
@@ -192,13 +199,19 @@
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-body-inner">
-                        <p><strong>Impact:</strong> A flaw in token validation allowed attackers to forge sessions and
-                            escalate privileges to administrative accounts without valid credentials.</p>
-                        <p><strong>Contribution type:</strong> Vulnerability Analysis &amp; Coordinated Disclosure (기여)
+                        <p>
+                            <strong data-i18n="cve2_impact_label">영향:</strong>
+                            <span data-i18n="cve2_impact">토큰 검증 로직의 결함으로 인해 공격자가 세션을 위조하고 유효한 자격 증명 없이 관리자 계정으로 권한을 상승시킬
+                                수 있습니다.</span>
+                        </p>
+                        <p>
+                            <strong data-i18n="cve2_contrib_label">기여 유형:</strong>
+                            <span data-i18n="cve2_contrib">취약점 분석 및 조율된 공개</span>
                         </p>
                         <div class="detail-footer">
-                            <span>Disclosed: 2026-01-10</span>
-                            <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">KVE Details</a>
+                            <span data-i18n="cve2_disclosed">공개일: 2026-01-10</span>
+                            <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
+                                data-i18n="cve2_btn">KVE 세부 정보</a>
                         </div>
                     </div>
                 </div>
@@ -207,7 +220,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 RedPoc Team | All Rights Reserved</p>
+        <p data-i18n="footer_copy">© 2026 RedPoc Team | All Rights Reserved</p>
     </footer>
 
     <script>
@@ -215,7 +228,6 @@
             const card = document.getElementById(id);
             const body = card.querySelector('.accordion-body');
             const isOpen = card.classList.contains('open');
-
             if (isOpen) {
                 body.style.maxHeight = '0';
                 card.classList.remove('open');
@@ -225,6 +237,7 @@
             }
         }
     </script>
+    <script src="i18n.js"></script>
 </body>
 
 </html>

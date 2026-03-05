@@ -130,19 +130,22 @@
             <h1>Red<span>Poc</span></h1>
         </a>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="cve.html">CVE Archive</a>
-            <a href="research.html">Research</a>
-            <a href="team.html" class="active">Team</a>
+            <a href="index.html" data-i18n="nav_home">홈</a>
+            <a href="cve.html" data-i18n="nav_cve">CVE 아카이브</a>
+            <a href="research.html" data-i18n="nav_research">연구</a>
+            <a href="team.html" class="active" data-i18n="nav_team">팀</a>
+            <button id="lang-toggle-btn" onclick="toggleLanguage()"
+                style="background:transparent;border:1px solid rgba(255,255,255,0.15);color:#888;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:0.8rem;font-family:inherit;transition:all 0.3s;margin-left:10px;"
+                onmouseover="this.style.borderColor='#ff2a2a';this.style.color='#ff2a2a'"
+                onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#888'">English</button>
         </nav>
     </header>
 
     <div class="container">
         <section class="hero">
-            <div class="hero-badge">The Collective</div>
-            <h2>Meet the Team</h2>
-            <p>We are a group of dedicated security engineers and researchers united by a passion for offensive
-                security.</p>
+            <div class="hero-badge" data-i18n="team_badge">구성원</div>
+            <h2 data-i18n="team_hero_title">팀 소개</h2>
+            <p data-i18n="team_hero_desc">오펜시브 보안에 대한 열정으로 뭉친 보안 엔지니어 및 연구자들의 그룹입니다.</p>
         </section>
 
         <section>
@@ -154,8 +157,8 @@
                             onerror="this.src='https://ui-avatars.com/api/?name=drkim&background=1a0a0a&color=ff2a2a&size=100'">
                     </div>
                     <div class="member-name">drkim</div>
-                    <span class="member-role">Co-Founder</span>
-                    <p class="member-desc">Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <span class="member-role" data-i18n="team_role">공동 창립자</span>
+                    <p class="member-desc" data-i18n="team_desc">웹 보안, 클라우드 아키텍처, APT 시뮬레이션을 전문으로 합니다.</p>
                     <a href="https://github.com/drkim-dev" target="_blank" class="github-link">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -171,8 +174,8 @@
                             onerror="this.src='https://ui-avatars.com/api/?name=redyank&background=1a0a0a&color=ff2a2a&size=100'">
                     </div>
                     <div class="member-name">redyank</div>
-                    <span class="member-role">Co-Founder</span>
-                    <p class="member-desc">Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <span class="member-role" data-i18n="team_role">공동 창립자</span>
+                    <p class="member-desc" data-i18n="team_desc">웹 보안, 클라우드 아키텍처, APT 시뮬레이션을 전문으로 합니다.</p>
                     <a href="https://github.com/redyank" target="_blank" class="github-link">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -188,8 +191,8 @@
                             onerror="this.src='https://ui-avatars.com/api/?name=dyingman1&background=1a0a0a&color=ff2a2a&size=100'">
                     </div>
                     <div class="member-name">dyingman1</div>
-                    <span class="member-role">Co-Founder</span>
-                    <p class="member-desc">Specializes in Web Security, Cloud Architecture, and APT Simulation.</p>
+                    <span class="member-role" data-i18n="team_role">공동 창립자</span>
+                    <p class="member-desc" data-i18n="team_desc">웹 보안, 클라우드 아키텍처, APT 시뮬레이션을 전문으로 합니다.</p>
                     <a href="https://github.com/dyingman1" target="_blank" class="github-link">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -204,8 +207,9 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 RedPoc Team | All Rights Reserved</p>
+        <p data-i18n="footer_copy">© 2026 RedPoc Team | All Rights Reserved</p>
     </footer>
+    <script src="i18n.js"></script>
 </body>
 
 </html>
