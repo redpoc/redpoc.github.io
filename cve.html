@@ -1,80 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<title>RedPoc | CVE Archive</title>
-<style>
-body {
-    background-color: #0d0d0d;
-    color: #e6e6e6;
-    font-family: Consolas, monospace;
-    margin: 0;
-}
-header {
-    background: #111;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid red;
-}
-h1 {
-    color: red;
-}
-.container {
-    width: 80%;
-    margin: 50px auto;
-}
-.card {
-    background: #1a1a1a;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-left: 4px solid red;
-}
-a {
-    color: #ff4d4d;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid #222;
-    margin-top: 50px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RedPoc CVE & KVE Archive - Official Vulnerability Contributions">
+    <title>CVE Archive | RedPoc</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="bg-glow"></div>
 
-<header>
-    <h1>🔴 RedPoc CVE & KVE Archive</h1>
-    <p>Official Vulnerability Contributions</p>
-</header>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="redpoc.png" alt="RedPoc Logo">
+            <h1>Red<span>Poc</span></h1>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cve.html" class="active">CVE Archive</a>
+            <a href="research.html">Research</a>
+            <a href="team.html">Team</a>
+        </nav>
+    </header>
 
-<div class="container">
+    <div class="container">
+        <section class="hero">
+            <div class="hero-badge">Vulnerability Archive</div>
+            <h2>Official Contributions</h2>
+            <p>A repository of our discovered vulnerabilities, registered CVEs/KVEs, and coordinated disclosures.</p>
+        </section>
 
-    <div class="card">
-        <h2>CVE-2026-XXXX</h2>
-        <p><strong>Title:</strong> SSRF in Example Library</p>
-        <p><strong>Impact:</strong> Internal network exposure</p>
-        <p><strong>Contribution:</strong> Vulnerability discovery and report (기여)</p>
-        <p><strong>Reference:</strong> <a href="#">NVD Link</a></p>
+        <section>
+            <div class="grid" style="grid-template-columns: 1fr;">
+                <div class="card animate delay-1">
+                    <div class="card-header">
+                        <span class="card-tag">CVE-2026-XXXX</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">CRITICAL (9.8)</span>
+                    </div>
+                    <h3>Server-Side Request Forgery in Example Library</h3>
+                    <p><strong>Impact:</strong> Allowed unauthenticated attackers to pivot into internal networks and
+                        access sensitive cloud metadata services, leading to potential RCE.</p>
+                    <p><strong>Contribution type:</strong> Vulnerability Discovery & Report (기여)</p>
+                    <div class="card-footer" style="margin-top: 20px;">
+                        <span>Disclosed: 2026-02-15</span>
+                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">NVD Advisory</a>
+                    </div>
+                </div>
+
+                <div class="card animate delay-2">
+                    <div class="card-header">
+                        <span class="card-tag">KVE-2026-XXXX</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">HIGH (8.1)</span>
+                    </div>
+                    <h3>Authentication Bypass in Enterprise Platform</h3>
+                    <p><strong>Impact:</strong> A flaw in token validation allowed attackers to forge sessions and
+                        escalate privileges to administrative accounts without valid credentials.</p>
+                    <p><strong>Contribution type:</strong> Vulnerability Analysis & Coordinated Disclosure (기여)</p>
+                    <div class="card-footer" style="margin-top: 20px;">
+                        <span>Disclosed: 2026-01-10</span>
+                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">KVE Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="card">
-        <h2>KVE-2026-XXXX</h2>
-        <p><strong>Title:</strong> Authentication Bypass in Example App</p>
-        <p><strong>Impact:</strong> Privilege escalation</p>
-        <p><strong>Contribution:</strong> Vulnerability analysis and coordinated disclosure (기여)</p>
-        <p><strong>Reference:</strong> <a href="#">KVE Link</a></p>
-    </div>
-
-</div>
-
-<footer>
-    © 2026 RedPoc Team | CVE Archive
-</footer>
-
+    <footer>
+        <p>&copy; 2026 RedPoc Team | All Rights Reserved</p>
+    </footer>
 </body>
+
 </html>

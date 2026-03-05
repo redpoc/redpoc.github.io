@@ -1,90 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<title>RedPoc | Offensive Security Team</title>
-<style>
-body {
-    background-color: #0d0d0d;
-    color: #e6e6e6;
-    font-family: Consolas, monospace;
-    margin: 0;
-}
-header {
-    background: #111;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid red;
-}
-h1 {
-    color: red;
-}
-nav {
-    text-align: center;
-    margin-top: 20px;
-}
-nav a {
-    color: #e6e6e6;
-    margin: 0 15px;
-    text-decoration: none;
-}
-nav a:hover {
-    color: red;
-}
-.section {
-    padding: 60px;
-    text-align: center;
-}
-.card {
-    background: #1a1a1a;
-    padding: 20px;
-    margin: 20px auto;
-    width: 60%;
-    border: 1px solid #222;
-}
-footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid #222;
-    margin-top: 50px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="RedPoc - Offensive Security Research Team specializing in vulnerability discovery and red teaming.">
+    <title>RedPoc | Offensive Security Team</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="bg-glow"></div>
 
-<header>
-   <h1>
-    <img src="redpoc.png" alt="RedPoc Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
-    RedPoc
-</h1>
-    <p>Offensive Security Research Team</p>
-</header>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="redpoc.png" alt="RedPoc Logo">
+            <h1>Red<span>Poc</span></h1>
+        </a>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="cve.html">CVE Archive</a>
+            <a href="research.html">Research</a>
+            <a href="team.html">Team</a>
+        </nav>
+    </header>
 
-<nav>
-    <a href="#">Home</a>
-    <a href="cve.html">CVE & KVE</a>
-    <a href="research.html">Research</a>
-    <a href="team.html">Team</a>
-</nav>
+    <div class="container">
+        <section class="hero">
+            <div class="hero-badge">whoami</div>
+            <h2>We find vulnerabilities before the adversaries do.</h2>
+            <p>RedPoc is an elite offensive security research team focused on vulnerability discovery, advanced red
+                teaming, and pushing the boundaries of cybersecurity.</p>
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center;">
+                <a href="cve.html" class="btn btn-primary">View Our CVEs</a>
+                <a href="research.html" class="btn">Read Research</a>
+            </div>
+        </section>
 
-<div class="section">
-    <h2>About Us</h2>
-    <div class="card">
-        <p>RedPoc is a security research team focused on vulnerability discovery,
-        red teaming, and offensive security research.</p>
+        <section style="margin-top: 100px;">
+            <h2 class="section-title">Core Focus</h2>
+            <div class="grid">
+                <div class="card animate delay-1">
+                    <div class="card-header">
+                        <span class="card-tag">0x01</span>
+                    </div>
+                    <h3>0-Day Discovery</h3>
+                    <p>We actively analyze widespread software, enterprise platforms, and critical infrastructure to
+                        unearth zero-day vulnerabilities and report them responsibly.</p>
+                </div>
+
+                <div class="card animate delay-2">
+                    <div class="card-header">
+                        <span class="card-tag">0x02</span>
+                    </div>
+                    <h3>Red Teaming</h3>
+                    <p>Simulating advanced persistent threats (APT) to test and improve organizational detection and
+                        response capabilities.</p>
+                </div>
+
+                <div class="card animate delay-3">
+                    <div class="card-header">
+                        <span class="card-tag">0x03</span>
+                    </div>
+                    <h3>Security Tooling</h3>
+                    <p>Building open-source offensive security tools to automate exploitation and payload generation,
+                        aiding the research community.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <h2>Recent Contributions</h2>
-    <div class="card">
-        <p>CVE-2026-XXXX – SSRF in XXX (기여)</p>
-        <p>KVE-2026-XXXX – Auth Bypass in XXX (기여)</p>
-    </div>
-</div>
-
-<footer>
-    © 2026 RedPoc Team | All Rights Reserved
-</footer>
-
+    <footer>
+        <div class="footer-links">
+            <a href="https://github.com/redpoc" target="_blank">GitHub</a> •
+            <a href="mailto:contact@redpoc.io">Contact</a>
+        </div>
+        <p style="margin-top: 15px;">&copy; 2026 RedPoc Team | All Rights Reserved</p>
+    </footer>
 </body>
+
 </html>
