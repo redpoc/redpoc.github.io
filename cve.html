@@ -7,6 +7,122 @@
     <meta name="description" content="RedPoc CVE & KVE Archive - Official Vulnerability Contributions">
     <title>CVE Archive | RedPoc</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .accordion-card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .accordion-card.open {
+            border-color: rgba(255, 42, 42, 0.4);
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .accordion-header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .accordion-tag {
+            font-family: var(--font-mono);
+            color: var(--primary-red);
+            font-size: 1rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .accordion-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .accordion-header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        .severity-badge {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            white-space: nowrap;
+        }
+
+        .accordion-toggle {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--surface-border);
+            border-radius: 50%;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .accordion-card.open .accordion-toggle {
+            background: rgba(255, 42, 42, 0.1);
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+            transform: rotate(45deg);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.3s ease;
+        }
+
+        .accordion-body-inner {
+            padding: 0 30px 25px 30px;
+            border-top: 1px solid var(--surface-border);
+        }
+
+        .accordion-body-inner p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .accordion-body-inner strong {
+            color: var(--text-main);
+        }
+
+        .detail-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--surface-border);
+            padding-top: 15px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,34 +149,53 @@
         </section>
 
         <section>
-            <div class="grid" style="grid-template-columns: 1fr;">
-                <div class="card animate delay-1">
-                    <div class="card-header">
-                        <span class="card-tag">CVE-2026-XXXX</span>
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">CRITICAL (9.8)</span>
+            <!-- CVE Entry 1 -->
+            <div class="accordion-card" id="cve-1">
+                <div class="accordion-header" onclick="toggleAccordion('cve-1')">
+                    <div class="accordion-header-left">
+                        <span class="accordion-tag">CVE-2026-XXXX</span>
+                        <span class="accordion-title">Server-Side Request Forgery in Example Library</span>
                     </div>
-                    <h3>Server-Side Request Forgery in Example Library</h3>
-                    <p><strong>Impact:</strong> Allowed unauthenticated attackers to pivot into internal networks and
-                        access sensitive cloud metadata services, leading to potential RCE.</p>
-                    <p><strong>Contribution type:</strong> Vulnerability Discovery & Report (기여)</p>
-                    <div class="card-footer" style="margin-top: 20px;">
-                        <span>Disclosed: 2026-02-15</span>
-                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">NVD Advisory</a>
+                    <div class="accordion-header-right">
+                        <span class="severity-badge">CRITICAL (9.8)</span>
+                        <div class="accordion-toggle">+</div>
                     </div>
                 </div>
-
-                <div class="card animate delay-2">
-                    <div class="card-header">
-                        <span class="card-tag">KVE-2026-XXXX</span>
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">HIGH (8.1)</span>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <p><strong>Impact:</strong> Allowed unauthenticated attackers to pivot into internal networks
+                            and access sensitive cloud metadata services, leading to potential RCE.</p>
+                        <p><strong>Contribution type:</strong> Vulnerability Discovery &amp; Report (기여)</p>
+                        <div class="detail-footer">
+                            <span>Disclosed: 2026-02-15</span>
+                            <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">NVD Advisory</a>
+                        </div>
                     </div>
-                    <h3>Authentication Bypass in Enterprise Platform</h3>
-                    <p><strong>Impact:</strong> A flaw in token validation allowed attackers to forge sessions and
-                        escalate privileges to administrative accounts without valid credentials.</p>
-                    <p><strong>Contribution type:</strong> Vulnerability Analysis & Coordinated Disclosure (기여)</p>
-                    <div class="card-footer" style="margin-top: 20px;">
-                        <span>Disclosed: 2026-01-10</span>
-                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">KVE Details</a>
+                </div>
+            </div>
+
+            <!-- KVE Entry 1 -->
+            <div class="accordion-card" id="cve-2">
+                <div class="accordion-header" onclick="toggleAccordion('cve-2')">
+                    <div class="accordion-header-left">
+                        <span class="accordion-tag">KVE-2026-XXXX</span>
+                        <span class="accordion-title">Authentication Bypass in Enterprise Platform</span>
+                    </div>
+                    <div class="accordion-header-right">
+                        <span class="severity-badge">HIGH (8.1)</span>
+                        <div class="accordion-toggle">+</div>
+                    </div>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <p><strong>Impact:</strong> A flaw in token validation allowed attackers to forge sessions and
+                            escalate privileges to administrative accounts without valid credentials.</p>
+                        <p><strong>Contribution type:</strong> Vulnerability Analysis &amp; Coordinated Disclosure (기여)
+                        </p>
+                        <div class="detail-footer">
+                            <span>Disclosed: 2026-01-10</span>
+                            <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">KVE Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,6 +205,22 @@
     <footer>
         <p>&copy; 2026 RedPoc Team | All Rights Reserved</p>
     </footer>
+
+    <script>
+        function toggleAccordion(id) {
+            const card = document.getElementById(id);
+            const body = card.querySelector('.accordion-body');
+            const isOpen = card.classList.contains('open');
+
+            if (isOpen) {
+                body.style.maxHeight = '0';
+                card.classList.remove('open');
+            } else {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                card.classList.add('open');
+            }
+        }
+    </script>
 </body>
 
 </html>
