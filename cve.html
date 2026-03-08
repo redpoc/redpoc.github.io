@@ -122,6 +122,31 @@
             font-size: 0.85rem;
             color: #666;
         }
+
+        .detail-footer-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contributor-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 42, 42, 0.08);
+            border: 1px solid rgba(255, 42, 42, 0.25);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.78rem;
+            color: var(--primary-red);
+            font-family: var(--font-mono);
+            letter-spacing: 0.02em;
+        }
+
+        .contributor-badge::before {
+            content: '👤';
+            font-size: 0.75rem;
+        }
     </style>
 </head>
 
@@ -178,8 +203,11 @@
                         </p>
                         <div class="detail-footer">
                             <span data-i18n="cve1_disclosed">공개일: 2026-03-05</span>
-                            <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
-                                data-i18n="cve1_btn">NVD 어드바이저리</a>
+                            <div class="detail-footer-right">
+                                <span class="contributor-badge">redyank</span>
+                                <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
+                                    data-i18n="cve1_btn">NVD 어드바이저리</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -210,8 +238,11 @@
                         </p>
                         <div class="detail-footer">
                             <span data-i18n="cve2_disclosed">공개일: 2026-01-10</span>
-                            <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
-                                data-i18n="cve2_btn">KVE 세부 정보</a>
+                            <div class="detail-footer-right">
+                                <span class="contributor-badge">redyank</span>
+                                <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
+                                    data-i18n="cve2_btn">KVE 세부 정보</a>
+                            </div>
                         </div>
                     </div>
                 </div>
