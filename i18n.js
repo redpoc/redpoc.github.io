@@ -32,9 +32,9 @@ const translations = {
         index_card3_desc: 'Building open-source offensive security tools to automate exploitation and payload generation, aiding the research community.',
 
         // --- cve.html ---
-        cve_badge: 'Vulnerability Archive',
-        cve_hero_title: 'Official Contributions',
-        cve_hero_desc: 'A repository of our discovered vulnerabilities, registered CVEs/KVEs, and coordinated disclosures.',
+        cve_badge: 'Official Disclosures',
+        cve_hero_title: 'Vulnerability Research',
+        cve_hero_desc: 'Research findings identifying vulnerabilities discovered in a zero-day state within latest stable releases, responsibly disclosed to maintainers for subsequent patching and CVE assignment.',
         cve_tab_cve: 'CVE TRACK',
         cve_tab_kve: 'KVE & OTHERS',
         cve_label_impact: 'Impact',
@@ -102,9 +102,9 @@ const translations = {
         index_card3_desc: '익스플로잇 자동화 및 페이로드 생성을 위한 오픈소스 오펜시브 보안 도구를 개발하여 연구 커뮤니티를 지원합니다.',
 
         // --- cve.html ---
-        cve_badge: '취약점 아카이브',
-        cve_hero_title: '공식 기여 목록',
-        cve_hero_desc: '발굴한 취약점, 등록된 CVE/KVE, 그리고 조율된 공개 내역을 모아둔 저장소입니다.',
+        cve_badge: '공식 취약점 제보',
+        cve_hero_title: '취약점 연구 성과 (Vulnerability Research)',
+        cve_hero_desc: '최신 안정 버전에서 발견 당시 제로데이(0-Day) 상태였던 취약점들을 식별하고, 책임감 있는 제보를 통해 패치와 CVE 할당을 이끌어낸 연구 기록입니다.',
         cve_tab_cve: 'CVE 트랙',
         cve_tab_kve: 'KVE 및 기타',
         cve_label_impact: '영향도',
