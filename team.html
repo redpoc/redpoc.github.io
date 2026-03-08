@@ -129,7 +129,12 @@
             <img src="redpoc.png" alt="RedPoc Logo">
             <h1>Red<span>Poc</span></h1>
         </a>
-        <nav>
+        <button class="menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="main-nav">
             <a href="index.html" data-i18n="nav_home">홈</a>
             <a href="cve.html" data-i18n="nav_cve">CVE 아카이브</a>
             <a href="research.html" data-i18n="nav_research">연구</a>
@@ -209,6 +214,20 @@
     <footer>
         <p data-i18n="footer_copy">© 2026 RedPoc Team | All Rights Reserved</p>
     </footer>
+    <script>
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mainNav.classList.toggle('open');
+        });
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('open');
+            });
+        });
+    </script>
     <script src="i18n.js"></script>
 </body>
 

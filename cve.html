@@ -8,31 +8,74 @@
     <title>CVE Archive | RedPoc</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Tab System Styles */
+        .tabs-container {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 10px 25px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-red);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-red);
+            box-shadow: 0 0 10px var(--primary-red);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Fixed Accordion for Original Clean Look */
         .accordion-card {
             background: var(--surface-color);
             border: 1px solid var(--surface-border);
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             overflow: hidden;
-            transition: border-color 0.3s ease;
+            transition: var(--transition);
         }
 
         .accordion-card.open {
             border-color: rgba(255, 42, 42, 0.4);
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .accordion-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 30px;
+            padding: 20px 30px;
             cursor: pointer;
-            user-select: none;
-            transition: background 0.2s ease;
-        }
-
-        .accordion-header:hover {
-            background: rgba(255, 255, 255, 0.02);
         }
 
         .accordion-header-left {
@@ -44,29 +87,40 @@
         .accordion-tag {
             font-family: var(--font-mono);
             color: var(--primary-red);
-            font-size: 1rem;
             font-weight: 600;
-            white-space: nowrap;
         }
 
         .accordion-title {
-            font-size: 1.05rem;
             font-weight: 600;
             color: var(--text-main);
         }
 
-        .accordion-header-right {
+        .header-contributor {
             display: flex;
             align-items: center;
-            gap: 20px;
-            flex-shrink: 0;
+            gap: 12px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            margin-left: 15px;
+            transition: var(--transition);
+        }
+        .header-contributor:hover { border-color: rgba(255,42,42,0.3); background: rgba(255,255,255,0.06); }
+
+        .header-contributor img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-red);
+            object-fit: cover;
         }
 
-        .severity-badge {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        .header-contributor span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
             font-family: var(--font-mono);
-            white-space: nowrap;
         }
 
         .accordion-toggle {
@@ -78,74 +132,128 @@
             border: 1px solid var(--surface-border);
             border-radius: 50%;
             color: var(--text-muted);
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
+            transition: var(--transition);
         }
 
         .accordion-card.open .accordion-toggle {
-            background: rgba(255, 42, 42, 0.1);
-            border-color: var(--primary-red);
-            color: var(--primary-red);
             transform: rotate(45deg);
+            background: rgba(255, 42, 42, 0.1);
+            color: var(--primary-red);
+            border-color: var(--primary-red);
         }
 
         .accordion-body {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.3s ease;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .accordion-body-inner {
-            padding: 0 30px 25px 30px;
+            padding: 20px 30px 25px 30px;
             border-top: 1px solid var(--surface-border);
         }
 
-        .accordion-body-inner p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-
-        .accordion-body-inner strong {
-            color: var(--text-main);
-        }
-
-        .detail-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--surface-border);
-            padding-top: 15px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .detail-footer-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .contributor-badge {
+        /* Tighter Meta Dashboard */
+        .meta-dashboard {
             display: inline-flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 6px;
-            background: rgba(255, 42, 42, 0.08);
-            border: 1px solid rgba(255, 42, 42, 0.25);
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 0.78rem;
-            color: var(--primary-red);
-            font-family: var(--font-mono);
-            letter-spacing: 0.02em;
+            gap: 24px;
+            margin-bottom: 25px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--surface-border);
+            border-radius: 10px;
         }
 
-        .contributor-badge::before {
-            content: '👤';
-            font-size: 0.75rem;
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meta-label {
+            font-size: 0.7rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-mono);
+        }
+
+        .impact-bar-track {
+            width: 70px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .impact-bar-fill {
+            height: 100%;
+            width: 0;
+            background: var(--sev-color);
+            box-shadow: 0 0 10px var(--sev-color);
+            transition: width 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .open .impact-bar-fill.moderate { width: 55%; }
+        .open .impact-bar-fill.high { width: 85%; }
+
+        .score-val {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--sev-color);
+        }
+
+        .target-tag {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+
+        .moderate { --sev-color: #facc15; }
+        .high { --sev-color: #fb923c; }
+
+        @media (max-width: 768px) {
+            .tabs-container { gap: 8px; }
+            .tab-btn { padding: 8px 12px; font-size: 0.85rem; }
+            
+            .accordion-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .header-contributor {
+                margin-left: 0;
+                width: 100%;
+                justify-content: flex-start;
+                padding: 10px;
+            }
+
+            .accordion-toggle {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .meta-dashboard {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: 18px;
+                padding: 15px;
+            }
+
+            .meta-item { width: 100%; justify-content: space-between; }
+            .impact-bar-track { width: 100px; }
         }
     </style>
 </head>
@@ -158,7 +266,12 @@
             <img src="redpoc.png" alt="RedPoc Logo">
             <h1>Red<span>Poc</span></h1>
         </a>
-        <nav>
+        <button class="menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="main-nav">
             <a href="index.html" data-i18n="nav_home">홈</a>
             <a href="cve.html" class="active" data-i18n="nav_cve">CVE 아카이브</a>
             <a href="research.html" data-i18n="nav_research">연구</a>
@@ -173,92 +286,115 @@
     <div class="container">
         <section class="hero">
             <div class="hero-badge" data-i18n="cve_badge">취약점 아카이브</div>
-            <h2 data-i18n="cve_hero_title">공식 기여 목록</h2>
-            <p data-i18n="cve_hero_desc">발굴한 취약점, 등록된 CVE/KVE, 그리고 조율된 공개 내역을 모아둔 저장소입니다.</p>
+            <h2 data-i18n="cve_hero_title">공식 기록</h2>
+            <p data-i18n="cve_hero_desc">커뮤니티와 기업에 기여한 공식 취약점 발굴 기록입니다.</p>
         </section>
 
-        <section>
-            <!-- CVE Entry 1 -->
-            <div class="accordion-card" id="cve-1">
+        <!-- TABS SYSTEM -->
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="openTab(event, 'cve-tab')" data-i18n="cve_tab_cve">CVE TRACK</button>
+            <button class="tab-btn" onclick="openTab(event, 'kve-tab')" data-i18n="cve_tab_kve">KVE & OTHERS</button>
+        </div>
+
+        <!-- CVE CONTENT -->
+        <div id="cve-tab" class="tab-content active">
+            <div class="accordion-card animate delay-1" id="cve-1">
                 <div class="accordion-header" onclick="toggleAccordion('cve-1')">
                     <div class="accordion-header-left">
                         <span class="accordion-tag">CVE-2026-29780</span>
-                        <span class="accordion-title" data-i18n="cve1_title">공식 예제 스크립트의 경로 탐색 취약점으로 인한 임의 파일 쓰기</span>
+                        <span class="accordion-title" data-i18n="cve1_title">공식 예제 스크립트 경로 탐색 취약점</span>
+                        <div class="header-contributor">
+                            <img src="https://github.com/redyank.png" alt="redyank" onerror="this.src='https://ui-avatars.com/api/?name=redyank&background=1a0a0a&color=ff2a2a'">
+                            <span>redyank</span>
+                        </div>
                     </div>
-                    <div class="accordion-header-right">
-                        <span class="severity-badge">Moderate (5.5)</span>
-                        <div class="accordion-toggle">+</div>
-                    </div>
+                    <div class="accordion-toggle">+</div>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-body-inner">
-                        <p>
-                            <strong data-i18n="cve1_summary_label">요약:</strong>
-                            <span data-i18n="cve1_summary">공식 예제 스크립트 examples/recursively_extract_attachments.py에 경로 탐색
-                                취약점이 존재하여 의도된 출력 디렉토리 외부에 임의의 파일을 쓸 수 있습니다.</span>
-                        </p>
-                        <p>
-                            <strong data-i18n="cve1_contrib_label">기여 유형:</strong>
-                            <span data-i18n="cve1_contrib">취약점 발굴 및 보고</span>
-                        </p>
-                        <div class="detail-footer">
-                            <span data-i18n="cve1_disclosed">공개일: 2026-03-05</span>
-                            <div class="detail-footer-right">
-                                <span class="contributor-badge">redyank</span>
-                                <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
-                                    data-i18n="cve1_btn">NVD 어드바이저리</a>
+                        <div class="meta-dashboard">
+                            <div class="meta-item moderate">
+                                <span class="meta-label" data-i18n="cve_label_impact">Impact</span>
+                                <div class="impact-bar-track"><div class="impact-bar-fill moderate"></div></div>
+                                <span class="score-val">5.5</span>
                             </div>
+                            <div class="meta-item">
+                                <span class="meta-label" data-i18n="cve_label_target">Target</span>
+                                <span class="target-tag" data-i18n="cve1_target">Python Examples</span>
+                            </div>
+                        </div>
+                        <p data-i18n="cve1_summary">recursively_extract_attachments.py 파일 내 경로 검증 루틴 부재로 인해 파싱된 이메일을 이용한 임의 경로 파일 쓰기가 가능한 취약점입니다.</p>
+                        <div style="margin-top:20px; display:flex; justify-content:flex-end; gap: 10px;">
+                            <button class="btn" style="padding: 8px 15px; font-size: 0.8rem;" onclick="copyId('CVE-2026-29780', this)" data-i18n="cve_btn_copy">Copy ID</button>
+                            <a href="#" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.8rem;" data-i18n="cve1_btn">NVD Advisory</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- KVE Entry 1 -->
-            <div class="accordion-card" id="cve-2">
-                <div class="accordion-header" onclick="toggleAccordion('cve-2')">
+        <!-- KVE CONTENT -->
+        <div id="kve-tab" class="tab-content">
+            <div class="accordion-card animate delay-1" id="kve-1">
+                <div class="accordion-header" onclick="toggleAccordion('kve-1')">
                     <div class="accordion-header-left">
                         <span class="accordion-tag">KVE-2026-XXXX</span>
-                        <span class="accordion-title" data-i18n="cve2_title">엔터프라이즈 플랫폼의 인증 우회</span>
+                        <span class="accordion-title" data-i18n="cve2_title">엔터프라이즈 플랫폼 인증 우회</span>
+                        <div class="header-contributor">
+                            <img src="https://github.com/drkim-dev.png" alt="drkim" onerror="this.src='https://ui-avatars.com/api/?name=drkim&background=1a0a0a&color=ff2a2a'">
+                            <span>drkim</span>
+                        </div>
                     </div>
-                    <div class="accordion-header-right">
-                        <span class="severity-badge">HIGH (8.1)</span>
-                        <div class="accordion-toggle">+</div>
-                    </div>
+                    <div class="accordion-toggle">+</div>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-body-inner">
-                        <p>
-                            <strong data-i18n="cve2_impact_label">영향:</strong>
-                            <span data-i18n="cve2_impact">토큰 검증 로직의 결함으로 인해 공격자가 세션을 위조하고 유효한 자격 증명 없이 관리자 계정으로 권한을 상승시킬
-                                수 있습니다.</span>
-                        </p>
-                        <p>
-                            <strong data-i18n="cve2_contrib_label">기여 유형:</strong>
-                            <span data-i18n="cve2_contrib">취약점 분석 및 조율된 공개</span>
-                        </p>
-                        <div class="detail-footer">
-                            <span data-i18n="cve2_disclosed">공개일: 2026-01-10</span>
-                            <div class="detail-footer-right">
-                                <span class="contributor-badge">redyank</span>
-                                <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
-                                    data-i18n="cve2_btn">KVE 세부 정보</a>
+                        <div class="meta-dashboard">
+                            <div class="meta-item high">
+                                <span class="meta-label" data-i18n="cve_label_impact">Impact</span>
+                                <div class="impact-bar-track"><div class="impact-bar-fill high"></div></div>
+                                <span class="score-val">8.1</span>
                             </div>
+                            <div class="meta-item">
+                                <span class="meta-label" data-i18n="cve_label_target">Target</span>
+                                <span class="target-tag" data-i18n="cve2_target">Enterprise CMS</span>
+                            </div>
+                        </div>
+                        <p data-i18n="cve2_impact">사용자 세션 토큰 검증 로직의 논리적 결함을 이용하여 별도의 비밀번호 없이 관리자 계정 권한을 탈취할 수 있는 취약점입니다.</p>
+                        <div style="margin-top:20px; display:flex; justify-content:flex-end; gap: 10px;">
+                            <button class="btn" style="padding: 8px 15px; font-size: 0.8rem;" onclick="copyId('KVE-2026-XXXX', this)" data-i18n="cve_btn_copy">Copy ID</button>
+                            <a href="#" class="btn" style="padding: 8px 18px; font-size: 0.8rem;" data-i18n="cve2_btn">Detail</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 
     <footer>
         <p data-i18n="footer_copy">© 2026 RedPoc Team | All Rights Reserved</p>
     </footer>
 
+    <script src="i18n.js"></script>
     <script>
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
         function toggleAccordion(id) {
             const card = document.getElementById(id);
             const body = card.querySelector('.accordion-body');
             const isOpen = card.classList.contains('open');
+
             if (isOpen) {
                 body.style.maxHeight = '0';
                 card.classList.remove('open');
@@ -267,8 +403,39 @@
                 card.classList.add('open');
             }
         }
+
+        async function copyId(text, btn) {
+            event.stopPropagation();
+            try {
+                await navigator.clipboard.writeText(text);
+                const ot = btn.textContent;
+                btn.textContent = getI18n('cve_btn_copied');
+                btn.style.borderColor = '#4ade80';
+                btn.style.color = '#4ade80';
+                setTimeout(() => {
+                    btn.textContent = ot;
+                    btn.style.borderColor = '';
+                    btn.style.color = '';
+                }, 2000);
+            } catch (err) {}
+        }
+
+        // Mobile Menu Toggle Logic
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mainNav.classList.toggle('open');
+        });
+
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('open');
+            });
+        });
     </script>
-    <script src="i18n.js"></script>
 </body>
 
 </html>

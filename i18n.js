@@ -34,20 +34,22 @@ const translations = {
         cve_badge: 'Vulnerability Archive',
         cve_hero_title: 'Official Contributions',
         cve_hero_desc: 'A repository of our discovered vulnerabilities, registered CVEs/KVEs, and coordinated disclosures.',
+        cve_tab_cve: 'CVE TRACK',
+        cve_tab_kve: 'KVE & OTHERS',
+        cve_label_impact: 'Impact',
+        cve_label_target: 'Target',
+        cve_btn_copy: 'Copy ID',
+        cve_btn_copied: 'Copied!',
         cve1_title: 'Path Traversal in Official Example Script Leading to Arbitrary File Write',
         cve1_summary_label: 'Summary:',
-        cve1_summary: 'The official example script examples/recursively_extract_attachments.py contains a path traversal vulnerability that allows arbitrary file write outside the intended output directory. Attachment filenames extracted from parsed emails are directly used to construct output file paths without any sanitization, allowing an attacker-controlled filename to escape the target directory.',
-        cve1_contrib_label: 'Contribution type:',
-        cve1_contrib: 'Vulnerability Discovery & Report',
-        cve1_disclosed: 'Disclosed: 2026-03-05',
+        cve1_summary: 'The official example script examples/recursively_extract_attachments.py contains a path traversal vulnerability that allows arbitrary file write outside the intended output directory.',
+        cve1_target: 'Python Examples',
         cve1_btn: 'NVD Advisory',
         cve2_title: 'Authentication Bypass in Enterprise Platform',
         cve2_impact_label: 'Impact:',
         cve2_impact: 'A flaw in token validation allowed attackers to forge sessions and escalate privileges to administrative accounts without valid credentials.',
-        cve2_contrib_label: 'Contribution type:',
-        cve2_contrib: 'Vulnerability Analysis & Coordinated Disclosure',
-        cve2_disclosed: 'Disclosed: 2026-01-10',
-        cve2_btn: 'KVE Details',
+        cve2_target: 'Enterprise CMS',
+        cve2_btn: 'Detail',
 
         // --- research.html ---
         research_badge: 'Publications',
@@ -98,20 +100,22 @@ const translations = {
         cve_badge: '취약점 아카이브',
         cve_hero_title: '공식 기여 목록',
         cve_hero_desc: '발굴한 취약점, 등록된 CVE/KVE, 그리고 조율된 공개 내역을 모아둔 저장소입니다.',
-        cve1_title: '공식 예제 스크립트의 경로 탐색 취약점으로 인한 임의 파일 쓰기',
+        cve_tab_cve: 'CVE 트랙',
+        cve_tab_kve: 'KVE 및 기타',
+        cve_label_impact: '영향도',
+        cve_label_target: '대상',
+        cve_btn_copy: 'ID 복사',
+        cve_btn_copied: '복사됨!',
+        cve1_title: '공식 예제 스크립트 경로 탐색 취약점',
         cve1_summary_label: '요약:',
-        cve1_summary: '공식 예제 스크립트 examples/recursively_extract_attachments.py에 경로 탐색 취약점이 존재하여 의도된 출력 디렉토리 외부에 임의의 파일을 쓸 수 있습니다. 파싱된 이메일에서 추출된 첨부파일 이름이 별도의 검증 없이 출력 파일 경로 구성에 직접 사용되어, 공격자가 제어하는 파일명으로 대상 디렉토리를 탈출할 수 있습니다.',
-        cve1_contrib_label: '기여 유형:',
-        cve1_contrib: '취약점 발굴 및 보고',
-        cve1_disclosed: '공개일: 2026-03-05',
+        cve1_summary: 'recursively_extract_attachments.py 파일 내 경로 검증 루틴 부재로 인해 임의 경로 파일 쓰기가 가능한 취약점입니다.',
+        cve1_target: 'Python 예제',
         cve1_btn: 'NVD 어드바이저리',
-        cve2_title: '엔터프라이즈 플랫폼의 인증 우회',
+        cve2_title: '엔터프라이즈 플랫폼 인증 우회',
         cve2_impact_label: '영향:',
-        cve2_impact: '토큰 검증 로직의 결함으로 인해 공격자가 세션을 위조하고 유효한 자격 증명 없이 관리자 계정으로 권한을 상승시킬 수 있습니다.',
-        cve2_contrib_label: '기여 유형:',
-        cve2_contrib: '취약점 분석 및 조율된 공개',
-        cve2_disclosed: '공개일: 2026-01-10',
-        cve2_btn: 'KVE 세부 정보',
+        cve2_impact: '사용자 세션 토큰 검증 로직의 결함을 이용하여 별도의 비밀번호 없이 관리자 계정 권한을 탈취할 수 있는 취약점입니다.',
+        cve2_target: '기업용 CMS',
+        cve2_btn: '상세보기',
 
         // --- research.html ---
         research_badge: '발행물',
@@ -138,31 +142,31 @@ const translations = {
 
 // ── Core i18n Engine ──────────────────────────────────────────────────────────
 
+// ── Global Helper for JS components ──────────────────────────────────────────
+function getI18n(key) {
+    const lang = localStorage.getItem('redpoc_lang') || 'ko';
+    return (translations[lang] && translations[lang][key]) || key;
+}
+
 function applyTranslations(lang) {
     const t = translations[lang];
     if (!t) return;
 
-    // Text content translations
+    localStorage.setItem('redpoc_lang', lang);
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key] !== undefined) el.textContent = t[key];
     });
 
-    // HTML content translations (for elements with mixed bold/text content)
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
         const key = el.getAttribute('data-i18n-html');
         if (t[key] !== undefined) el.innerHTML = t[key];
     });
 
-    // Update lang attribute
     document.documentElement.lang = lang;
-
-    // Update toggle button label
     const btn = document.getElementById('lang-toggle-btn');
     if (btn) btn.textContent = lang === 'en' ? '한국어' : 'English';
-
-    // Persist choice
-    localStorage.setItem('redpoc_lang', lang);
 }
 
 function toggleLanguage() {
@@ -170,8 +174,6 @@ function toggleLanguage() {
     applyTranslations(current === 'en' ? 'ko' : 'en');
 }
 
-// Apply on load
 document.addEventListener('DOMContentLoaded', () => {
-    const saved = localStorage.getItem('redpoc_lang') || 'ko';
-    applyTranslations(saved);
+    applyTranslations(localStorage.getItem('redpoc_lang') || 'ko');
 });
