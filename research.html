@@ -79,14 +79,17 @@
     <script>
         const menuToggle = document.getElementById('mobile-menu-toggle');
         const mainNav = document.getElementById('main-nav');
+        const body = document.body;
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             mainNav.classList.toggle('open');
+            body.classList.toggle('no-scroll');
         });
         mainNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
                 mainNav.classList.remove('open');
+                body.classList.remove('no-scroll');
             });
         });
     </script>

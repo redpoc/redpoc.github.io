@@ -95,6 +95,162 @@
             color: var(--text-main);
         }
 
+        /* --- Multi-Contributor Group --- */
+        /* --- Multi-Contributor Group --- */
+        .contributor-group {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--surface-border);
+            border-radius: 20px;
+            padding: 4px 14px 4px 8px;
+            gap: 10px;
+            margin-left: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .contributor-group:hover {
+            background: rgba(255, 42, 42, 0.05);
+            border-color: rgba(255, 42, 42, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .avatar-stack {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .avatar-stack img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--surface-color);
+            margin-left: -12px;
+            background: var(--surface-color);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .avatar-stack img:last-child { margin-left: 0; }
+
+        .contributor-group span {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #777;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Contributor Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header h3 {
+            font-family: var(--font-mono);
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .modal-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 12px;
+            width: 120px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .modal-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 42, 42, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .modal-item img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-red);
+            box-shadow: 0 4px 15px rgba(255, 42, 42, 0.15);
+        }
+
+        .modal-item-name {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover { color: var(--primary-red); }
+
         .header-contributor {
             display: flex;
             align-items: center;
@@ -230,7 +386,7 @@
                 padding: 20px;
             }
 
-            .header-contributor {
+            .header-contributor, .contributor-group {
                 margin-left: 0;
                 width: 100%;
                 justify-content: flex-start;
@@ -298,7 +454,46 @@
 
         <!-- CVE CONTENT -->
         <div id="cve-tab" class="tab-content active">
-            <div class="accordion-card animate delay-1" id="cve-1">
+            <!-- MULTI CONTRIBUTOR EXAMPLE -->
+            <div class="accordion-card animate delay-1" id="cve-multi">
+                <div class="accordion-header" onclick="toggleAccordion('cve-multi')">
+                    <div class="accordion-header-left">
+                        <span class="accordion-tag">CVE-2026-20111</span>
+                        <span class="accordion-title" data-i18n="cve_multi_title">멀티 벤더 드라이버 원격 코드 실행</span>
+                        <div class="contributor-group" onclick="event.stopPropagation(); openModal('cve_multi')">
+                            <div class="avatar-stack">
+                                <img src="https://github.com/dyingman1.png" alt="dyingman1" onerror="this.src='https://ui-avatars.com/api/?name=D&background=1a0a0a&color=ff2a2a'">
+                                <img src="https://github.com/drkim-dev.png" alt="drkim" onerror="this.src='https://ui-avatars.com/api/?name=K&background=1a0a0a&color=ff2a2a'">
+                                <img src="https://github.com/redyank.png" alt="redyank" onerror="this.src='https://ui-avatars.com/api/?name=R&background=1a0a0a&color=ff2a2a'">
+                            </div>
+                            <span data-i18n="cve_label_collab">Colleagues</span>
+                        </div>
+                    </div>
+                    <div class="accordion-toggle">+</div>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <div class="meta-dashboard">
+                            <div class="meta-item high">
+                                <span class="meta-label" data-i18n="cve_label_impact">Impact</span>
+                                <div class="impact-bar-track"><div class="impact-bar-fill high"></div></div>
+                                <span class="score-val">9.8</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label" data-i18n="cve_label_target">Target</span>
+                                <span class="target-tag">Windows Drivers</span>
+                            </div>
+                        </div>
+                        <p data-i18n="cve_multi_summary">다수의 하드웨어 벤더에서 공통으로 사용되는 커널 드라이버의 IOCTL 핸들러에서 발견된 스택 오버플로우 취약점입니다. 공격자는 이를 통해 커널 권한으로 임의 코드를 실행할 수 있습니다.</p>
+                        <div style="margin-top:20px; display:flex; justify-content:flex-end; gap: 10px;">
+                            <button class="btn" style="padding: 8px 15px; font-size: 0.8rem;" onclick="copyId('CVE-2026-20111', this)" data-i18n="cve_btn_copy">Copy ID</button>
+                            <a href="#" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.8rem;" data-i18n="cve1_btn">NVD Advisory</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-card animate delay-2" id="cve-1">
                 <div class="accordion-header" onclick="toggleAccordion('cve-1')">
                     <div class="accordion-header-left">
                         <span class="accordion-tag">CVE-2026-29780</span>
@@ -375,8 +570,55 @@
         <p data-i18n="footer_copy">© 2026 RedPoc Team | All Rights Reserved</p>
     </footer>
 
+    <!-- Contributor Modal -->
+    <div id="contributor-modal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <h3 data-i18n="cve_label_collab">Colleagues</h3>
+                <p style="font-size: 0.8rem; color: #555;" data-i18n="modal_desc">Research Team for this vulnerability</p>
+            </div>
+            <div id="modal-content" class="modal-list">
+                <!-- Content will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="team_data.js"></script>
     <script src="i18n.js"></script>
     <script>
+        // Mapping of CVE cards to contributor IDs in TEAM_DATA
+        const cveContributors = {
+            'cve_multi': ['drkim', 'redyank', 'dyingman1']
+        };
+
+        function openModal(cveKey) {
+            const memberIds = cveContributors[cveKey];
+            if (!memberIds) return;
+
+            const lang = localStorage.getItem('redpoc_lang') || 'ko';
+            const content = document.getElementById('modal-content');
+            
+            content.innerHTML = memberIds.map(id => {
+                const member = TEAM_DATA.members[id];
+                if (!member) return '';
+                return `
+                    <div class="modal-item">
+                        <img src="${member.img}" alt="${member.name}" onerror="this.src='https://ui-avatars.com/api/?name=${member.name}&background=1a0a0a&color=ff2a2a'">
+                        <span class="modal-item-name">${member.name}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('contributor-modal').classList.add('active');
+            document.body.classList.add('no-scroll');
+        }
+
+        function closeModal() {
+            document.getElementById('contributor-modal').classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+
         function openTab(evt, tabName) {
             const tabcontent = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabcontent.length; i++) {
@@ -423,16 +665,19 @@
         // Mobile Menu Toggle Logic
         const menuToggle = document.getElementById('mobile-menu-toggle');
         const mainNav = document.getElementById('main-nav');
+        const body = document.body;
 
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             mainNav.classList.toggle('open');
+            body.classList.toggle('no-scroll');
         });
 
         mainNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
                 mainNav.classList.remove('open');
+                body.classList.remove('no-scroll');
             });
         });
     </script>
