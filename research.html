@@ -35,40 +35,15 @@
     </header>
 
     <div class="container">
-        <section class="hero">
+        <section class="hero reveal">
             <div class="hero-badge" data-i18n="research_badge">발행물</div>
             <h2 data-i18n="research_hero_title">보안 연구</h2>
             <p data-i18n="research_hero_desc">익스플로잇 기법, 리버스 엔지니어링, 오펜시브 방법론에 대한 심층 분석.</p>
         </section>
 
-        <section>
-            <div class="grid">
-                <div class="card animate delay-1">
-                    <div class="card-header">
-                        <span class="card-tag" data-i18n="research_card1_tag">아티클</span>
-                    </div>
-                    <h3 data-i18n="research_card1_title">커스텀 시스콜로 최신 EDR 우회하기</h3>
-                    <p data-i18n="research_card1_desc">직접 시스템 콜과 페이로드 안정성을 유지하면서 API 후킹을 동적으로 회피하는 방법에 대한 탐구.</p>
-                    <div class="card-footer" style="margin-top: 20px;">
-                        <span data-i18n="research_card1_date">2026년 3월</span>
-                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
-                            data-i18n="research_read_more">자세히 보기</a>
-                    </div>
-                </div>
-
-                <div class="card animate delay-2">
-                    <div class="card-header">
-                        <span class="card-tag" data-i18n="research_card2_tag">라이트업</span>
-                    </div>
-                    <h3 data-i18n="research_card2_title">UploadServer RCE 분석</h3>
-                    <p data-i18n="research_card2_desc">Python UploadServer 모듈의 취약점 체이닝을 통해 원격 코드 실행을 달성한 과정에 대한 상세한 분석.
-                    </p>
-                    <div class="card-footer" style="margin-top: 20px;">
-                        <span data-i18n="research_card2_date">2026년 2월</span>
-                        <a href="#" class="btn" style="padding: 6px 15px; font-size: 0.8rem;"
-                            data-i18n="research_read_more">자세히 보기</a>
-                    </div>
-                </div>
+        <section class="reveal">
+            <div class="grid" id="research-container">
+                <!-- Dynamically populated from research_data.js -->
             </div>
         </section>
     </div>
@@ -76,22 +51,80 @@
     <footer>
         <p data-i18n="footer_copy">© 2026 RedPoc Team | All Rights Reserved</p>
     </footer>
+
+    <script src="research_data.js"></script>
+    <script src="i18n.js"></script>
     <script>
+        function renderResearch() {
+            const lang = localStorage.getItem('redpoc_lang') || 'ko';
+            const container = document.getElementById('research-container');
+            
+            container.innerHTML = RESEARCH_DATA.articles.map(article => `
+                <div class="card reveal">
+                    <div class="card-header">
+                        <span class="card-tag">${article.tag[lang]}</span>
+                    </div>
+                    <h3>${article.title[lang]}</h3>
+                    <p>${article.desc[lang]}</p>
+                    <div class="card-footer" style="margin-top: 20px;">
+                        <span>${article.date[lang]}</span>
+                        <a href="${article.link}" class="btn" style="padding: 6px 15px; font-size: 0.8rem;">${getI18n('research_read_more')}</a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Re-apply observers
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        document.addEventListener('DOMContentLoaded', renderResearch);
+
+        const _origToggle = window.toggleLanguage;
+        window.toggleLanguage = function() {
+            if (typeof _origToggle === 'function') _origToggle();
+            renderResearch();
+        };
         const menuToggle = document.getElementById('mobile-menu-toggle');
         const mainNav = document.getElementById('main-nav');
         const body = document.body;
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mainNav.classList.toggle('open');
-            body.classList.toggle('no-scroll');
-        });
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mainNav.classList.remove('open');
-                body.classList.remove('no-scroll');
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                mainNav.classList.toggle('open');
+                body.classList.toggle('no-scroll');
             });
+
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    mainNav.classList.remove('open');
+                    body.classList.remove('no-scroll');
+                });
+            });
+        }
+
+        // Interactive Background Glow
+        const glow = document.querySelector('.bg-glow');
+        document.addEventListener('mousemove', (e) => {
+            if (glow) {
+                const x = e.clientX - 300;
+                const y = e.clientY - 300;
+                glow.style.transform = `translate(${x}px, ${y}px)`;
+            }
         });
+
+        // Scroll Reveal Implementation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { entry.isIntersecting && (entry.target.classList.add('active'), observer.unobserve(entry.target)) });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
     <script src="i18n.js"></script>
 </body>

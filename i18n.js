@@ -15,6 +15,7 @@ const translations = {
 
         // Footer
         footer_copy: '© 2026 RedPoc Team | All Rights Reserved',
+        modal_desc: 'Research Team for this vulnerability',
 
         // --- index.html ---
         index_badge: 'whoami',
@@ -84,6 +85,7 @@ const translations = {
 
         // Footer
         footer_copy: '© 2026 RedPoc Team | All Rights Reserved',
+        modal_desc: '이 취약점에 대한 연구 및 분석팀입니다.',
 
         // --- index.html ---
         index_badge: 'whoami',
@@ -181,5 +183,6 @@ function toggleLanguage() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    applyTranslations(localStorage.getItem('redpoc_lang') || 'ko');
+    // Default to 'en' (English) for international visitors if no preference saved
+    applyTranslations(localStorage.getItem('redpoc_lang') || 'en');
 });

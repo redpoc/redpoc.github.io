@@ -87,7 +87,8 @@
         .accordion-tag {
             font-family: var(--font-mono);
             color: var(--primary-red);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
         .accordion-title {
@@ -171,16 +172,26 @@
             border: 1px solid var(--surface-border);
             width: 90%;
             max-width: 500px;
+            max-height: 85vh; /* Prevent off-screen */
+            overflow-y: auto; /* Allow scrolling content */
             border-radius: 16px;
-            padding: 40px;
+            padding: 30px;
             position: relative;
-            transform: translateY(30px);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(0.95);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+        }
+
+        @media (max-width: 480px) {
+            .modal-card { padding: 25px 15px; width: 95%; max-height: 90vh; }
+            .modal-header { margin-bottom: 20px; }
+            .modal-list { gap: 15px; }
+            .modal-item { width: 110px; padding: 15px; }
         }
 
         .modal-overlay.active .modal-card {
-            transform: translateY(0);
+            transform: scale(1);
         }
 
         .modal-header {
@@ -399,6 +410,11 @@
                 right: 20px;
             }
 
+            .accordion-tag {
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+
             .meta-dashboard {
                 display: flex;
                 flex-direction: column;
@@ -440,129 +456,26 @@
     </header>
 
     <div class="container">
-        <section class="hero">
+        <section class="hero reveal">
             <div class="hero-badge" data-i18n="cve_badge">취약점 아카이브</div>
-            <h2 data-i18n="cve_hero_title">공식 기록</h2>
-            <p data-i18n="cve_hero_desc">커뮤니티와 기업에 기여한 공식 취약점 발굴 기록입니다.</p>
+            <h2 data-i18n="cve_hero_title">CVE Archive</h2>
+            <p data-i18n="cve_hero_desc">RedPoc 팀이 발견하고 보고한 주요 보안 취약점 리스트입니다.</p>
         </section>
 
-        <!-- TABS SYSTEM -->
-        <div class="tabs-container">
+        <section class="reveal">
+            <div class="tabs-container">
             <button class="tab-btn active" onclick="openTab(event, 'cve-tab')" data-i18n="cve_tab_cve">CVE TRACK</button>
             <button class="tab-btn" onclick="openTab(event, 'kve-tab')" data-i18n="cve_tab_kve">KVE & OTHERS</button>
         </div>
 
         <!-- CVE CONTENT -->
         <div id="cve-tab" class="tab-content active">
-            <!-- MULTI CONTRIBUTOR EXAMPLE -->
-            <div class="accordion-card animate delay-1" id="cve-multi">
-                <div class="accordion-header" onclick="toggleAccordion('cve-multi')">
-                    <div class="accordion-header-left">
-                        <span class="accordion-tag">CVE-2026-20111</span>
-                        <span class="accordion-title" data-i18n="cve_multi_title">멀티 벤더 드라이버 원격 코드 실행</span>
-                        <div class="contributor-group" onclick="event.stopPropagation(); openModal('cve_multi')">
-                            <div class="avatar-stack">
-                                <img src="https://github.com/dyingman1.png" alt="dyingman1" onerror="this.src='https://ui-avatars.com/api/?name=D&background=1a0a0a&color=ff2a2a'">
-                                <img src="https://github.com/drkim-dev.png" alt="drkim" onerror="this.src='https://ui-avatars.com/api/?name=K&background=1a0a0a&color=ff2a2a'">
-                                <img src="https://github.com/redyank.png" alt="redyank" onerror="this.src='https://ui-avatars.com/api/?name=R&background=1a0a0a&color=ff2a2a'">
-                            </div>
-                            <span data-i18n="cve_label_collab">Colleagues</span>
-                        </div>
-                    </div>
-                    <div class="accordion-toggle">+</div>
-                </div>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="meta-dashboard">
-                            <div class="meta-item high">
-                                <span class="meta-label" data-i18n="cve_label_impact">Impact</span>
-                                <div class="impact-bar-track"><div class="impact-bar-fill high"></div></div>
-                                <span class="score-val">9.8</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label" data-i18n="cve_label_target">Target</span>
-                                <span class="target-tag">Windows Drivers</span>
-                            </div>
-                        </div>
-                        <p data-i18n="cve_multi_summary">다수의 하드웨어 벤더에서 공통으로 사용되는 커널 드라이버의 IOCTL 핸들러에서 발견된 스택 오버플로우 취약점입니다. 공격자는 이를 통해 커널 권한으로 임의 코드를 실행할 수 있습니다.</p>
-                        <div style="margin-top:20px; display:flex; justify-content:flex-end; gap: 10px;">
-                            <button class="btn" style="padding: 8px 15px; font-size: 0.8rem;" onclick="copyId('CVE-2026-20111', this)" data-i18n="cve_btn_copy">Copy ID</button>
-                            <a href="#" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.8rem;" data-i18n="cve1_btn">NVD Advisory</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-card animate delay-2" id="cve-1">
-                <div class="accordion-header" onclick="toggleAccordion('cve-1')">
-                    <div class="accordion-header-left">
-                        <span class="accordion-tag">CVE-2026-29780</span>
-                        <span class="accordion-title" data-i18n="cve1_title">공식 예제 스크립트 경로 탐색 취약점</span>
-                        <div class="header-contributor">
-                            <img src="https://github.com/redyank.png" alt="redyank" onerror="this.src='https://ui-avatars.com/api/?name=redyank&background=1a0a0a&color=ff2a2a'">
-                            <span>redyank</span>
-                        </div>
-                    </div>
-                    <div class="accordion-toggle">+</div>
-                </div>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="meta-dashboard">
-                            <div class="meta-item moderate">
-                                <span class="meta-label" data-i18n="cve_label_impact">Impact</span>
-                                <div class="impact-bar-track"><div class="impact-bar-fill moderate"></div></div>
-                                <span class="score-val">5.5</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label" data-i18n="cve_label_target">Target</span>
-                                <span class="target-tag" data-i18n="cve1_target">Python Examples</span>
-                            </div>
-                        </div>
-                        <p data-i18n="cve1_summary">recursively_extract_attachments.py 파일 내 경로 검증 루틴 부재로 인해 파싱된 이메일을 이용한 임의 경로 파일 쓰기가 가능한 취약점입니다.</p>
-                        <div style="margin-top:20px; display:flex; justify-content:flex-end; gap: 10px;">
-                            <button class="btn" style="padding: 8px 15px; font-size: 0.8rem;" onclick="copyId('CVE-2026-29780', this)" data-i18n="cve_btn_copy">Copy ID</button>
-                            <a href="#" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.8rem;" data-i18n="cve1_btn">NVD Advisory</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Dynamically populated from cve_data.js -->
         </div>
 
         <!-- KVE CONTENT -->
         <div id="kve-tab" class="tab-content">
-            <div class="accordion-card animate delay-1" id="kve-1">
-                <div class="accordion-header" onclick="toggleAccordion('kve-1')">
-                    <div class="accordion-header-left">
-                        <span class="accordion-tag">KVE-2026-XXXX</span>
-                        <span class="accordion-title" data-i18n="cve2_title">엔터프라이즈 플랫폼 인증 우회</span>
-                        <div class="header-contributor">
-                            <img src="https://github.com/drkim-dev.png" alt="drkim" onerror="this.src='https://ui-avatars.com/api/?name=drkim&background=1a0a0a&color=ff2a2a'">
-                            <span>drkim</span>
-                        </div>
-                    </div>
-                    <div class="accordion-toggle">+</div>
-                </div>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="meta-dashboard">
-                            <div class="meta-item high">
-                                <span class="meta-label" data-i18n="cve_label_impact">Impact</span>
-                                <div class="impact-bar-track"><div class="impact-bar-fill high"></div></div>
-                                <span class="score-val">8.1</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label" data-i18n="cve_label_target">Target</span>
-                                <span class="target-tag" data-i18n="cve2_target">Enterprise CMS</span>
-                            </div>
-                        </div>
-                        <p data-i18n="cve2_impact">사용자 세션 토큰 검증 로직의 논리적 결함을 이용하여 별도의 비밀번호 없이 관리자 계정 권한을 탈취할 수 있는 취약점입니다.</p>
-                        <div style="margin-top:20px; display:flex; justify-content:flex-end; gap: 10px;">
-                            <button class="btn" style="padding: 8px 15px; font-size: 0.8rem;" onclick="copyId('KVE-2026-XXXX', this)" data-i18n="cve_btn_copy">Copy ID</button>
-                            <a href="#" class="btn" style="padding: 8px 18px; font-size: 0.8rem;" data-i18n="cve2_btn">Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Dynamically populated from cve_data.js -->
         </div>
     </div>
 
@@ -585,27 +498,109 @@
     </div>
 
     <script src="team_data.js"></script>
+    <script src="cve_data.js"></script>
     <script src="i18n.js"></script>
     <script>
-        // Mapping of CVE cards to contributor IDs in TEAM_DATA
-        const cveContributors = {
-            'cve_multi': ['drkim', 'redyank', 'dyingman1']
-        };
+        function renderCVEs() {
+            const lang = localStorage.getItem('redpoc_lang') || 'ko';
+            const cveContainer = document.getElementById('cve-tab');
+            const kveContainer = document.getElementById('kve-tab');
 
-        function openModal(cveKey) {
-            const memberIds = cveContributors[cveKey];
-            if (!memberIds) return;
+            // Sort helper: Descending ID (latest first)
+            const sortById = (a, b) => (b.id || "").localeCompare(a.id || "", undefined, {numeric: true, sensitivity: 'base'});
 
+            const sortedCVEs = [...CVE_DATA.cves].sort(sortById);
+            const sortedKVEs = [...CVE_DATA.kves].sort(sortById);
+
+            // Render
+            cveContainer.innerHTML = sortedCVEs.map((cve, idx) => generateCardHTML(cve, idx, lang)).join('');
+            kveContainer.innerHTML = sortedKVEs.map((kve, idx) => generateCardHTML(kve, idx, lang)).join('');
+
+            // Re-apply observers
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function generateCardHTML(item, idx, lang) {
+            const hasMultiple = item.contributors.length > 1;
+            const singleContributor = hasMultiple ? null : TEAM_DATA.members[item.contributors[0]];
+            const cardId = `card-${item.id}`;
+
+            let contributorHTML = '';
+            if (hasMultiple) {
+                // Show avatars up to 3
+                const avatars = item.contributors.slice(0, 3).map(id => {
+                    const m = TEAM_DATA.members[id];
+                    return `<img src="${m ? m.img : ''}" alt="${id}" onerror="this.src='https://ui-avatars.com/api/?name=${id}'">`;
+                }).join('');
+                
+                contributorHTML = `
+                    <div class="contributor-group" onclick="event.stopPropagation(); openDetailModal('${item.id}', true)">
+                        <div class="avatar-stack">${avatars}</div>
+                        <span style="font-size:0.75rem; color:#888; margin-left:8px;">${getI18n('cve_label_collab')}</span>
+                    </div>
+                `;
+            } else if (singleContributor) {
+                contributorHTML = `
+                    <div class="header-contributor">
+                        <img src="${singleContributor.img}" alt="${singleContributor.name}" onerror="this.src='https://ui-avatars.com/api/?name=${singleContributor.name}'">
+                        <span>${singleContributor.name}</span>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="accordion-card reveal" id="${cardId}">
+                    <div class="accordion-header" onclick="toggleAccordion('${cardId}')">
+                        <div class="accordion-header-left">
+                            <span class="accordion-tag">${item.id}</span>
+                            <span class="accordion-title">${item.title[lang]}</span>
+                            ${contributorHTML}
+                        </div>
+                        <div class="accordion-toggle">+</div>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <div class="meta-dashboard">
+                                <div class="meta-item ${item.severity}">
+                                    <span class="meta-label">${getI18n('cve_label_impact')}</span>
+                                    <div class="impact-bar-track"><div class="impact-bar-fill ${item.severity}" style="width: ${item.impact * 10}%"></div></div>
+                                    <span class="score-val">${item.impact}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">${getI18n('cve_label_target')}</span>
+                                    <span class="target-tag">${item.target}</span>
+                                </div>
+                            </div>
+                            <p>${item.summary[lang]}</p>
+                            <div style="margin-top:20px; display:flex; justify-content:flex-end; gap: 10px;">
+                                <button class="btn" style="padding: 8px 15px; font-size: 0.8rem;" onclick="copyId('${item.id}', this)">${getI18n('cve_btn_copy')}</button>
+                                <a href="${item.advisory || item.detail_link || '#'}" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.8rem;">${item.advisory ? getI18n('cve1_btn') : getI18n('cve2_btn')}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openDetailModal(id, isCVE) {
             const lang = localStorage.getItem('redpoc_lang') || 'ko';
             const content = document.getElementById('modal-content');
-            
-            content.innerHTML = memberIds.map(id => {
-                const member = TEAM_DATA.members[id];
-                if (!member) return '';
+            let memberIds = [];
+
+            if (isCVE) {
+                const item = [...CVE_DATA.cves, ...CVE_DATA.kves].find(c => c.id === id);
+                memberIds = item ? item.contributors : [];
+            } else {
+                memberIds = [id];
+            }
+
+            content.innerHTML = memberIds.map(mid => {
+                const m = TEAM_DATA.members[mid];
+                if (!m) return '';
                 return `
                     <div class="modal-item">
-                        <img src="${member.img}" alt="${member.name}" onerror="this.src='https://ui-avatars.com/api/?name=${member.name}&background=1a0a0a&color=ff2a2a'">
-                        <span class="modal-item-name">${member.name}</span>
+                        <img src="${m.img}" alt="${m.name}" onerror="this.src='https://ui-avatars.com/api/?name=${m.name}'">
+                        <span class="modal-item-name">${m.name}</span>
                     </div>
                 `;
             }).join('');
@@ -662,7 +657,17 @@
             } catch (err) {}
         }
 
-        // Mobile Menu Toggle Logic
+        // Initialize and listen for language changes
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCVEs();
+        });
+
+        const _origToggle = window.toggleLanguage;
+        window.toggleLanguage = function() {
+            if (typeof _origToggle === 'function') _origToggle();
+            renderCVEs();
+        };
+
         const menuToggle = document.getElementById('mobile-menu-toggle');
         const mainNav = document.getElementById('main-nav');
         const body = document.body;
@@ -680,6 +685,33 @@
                 body.classList.remove('no-scroll');
             });
         });
+
+        // Interactive Background Glow
+        const glow = document.querySelector('.bg-glow');
+        document.addEventListener('mousemove', (e) => {
+            if (glow) {
+                const x = e.clientX - 300;
+                const y = e.clientY - 300;
+                glow.style.transform = `translate(${x}px, ${y}px)`;
+            }
+        });
+
+        // Scroll Reveal Implementation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 
