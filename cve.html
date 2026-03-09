@@ -460,9 +460,18 @@
             <div class="hero-badge" data-i18n="cve_badge">취약점 아카이브</div>
             <h2 data-i18n="cve_hero_title">CVE Archive</h2>
             <p data-i18n="cve_hero_desc">RedPoc 팀이 발견하고 보고한 주요 보안 취약점 리스트입니다.</p>
+            
+            <!-- Stats Dashboard Integrated for Tighter Layout -->
+            <div class="stats-container reveal" style="margin-top: 25px;">
+                <div class="stats-badge">
+                    <span class="stats-number" id="stats-total">0</span>
+                    <span class="stats-label" data-i18n="stats_total_discoveries">Total Discoveries</span>
+                </div>
+            </div>
         </section>
 
-        <section class="reveal">
+        <section class="reveal" style="margin-top: 40px;">
+
             <div class="tabs-container">
             <button class="tab-btn active" onclick="openTab(event, 'cve-tab')" data-i18n="cve_tab_cve">CVE TRACK</button>
             <button class="tab-btn" onclick="openTab(event, 'kve-tab')" data-i18n="cve_tab_kve">KVE & OTHERS</button>
@@ -660,6 +669,11 @@
         // Initialize and listen for language changes
         document.addEventListener('DOMContentLoaded', () => {
             renderCVEs();
+            // Fallback: If stats-container is at the top (already visible)
+            const stats = document.querySelector('.stats-container');
+            if(stats && stats.getBoundingClientRect().top < window.innerHeight) {
+                updateStats();
+            }
         });
 
         const _origToggle = window.toggleLanguage;
@@ -706,10 +720,29 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    if (entry.target.classList.contains('stats-container')) updateStats();
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
+
+        function updateStats() {
+            const allItems = [...(CVE_DATA.cves || []), ...(CVE_DATA.kves || [])];
+            animateCounter('stats-total', allItems.length);
+        }
+
+        function animateCounter(id, target) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            let current = 0;
+            const duration = 1500;
+            const stepTime = Math.max(duration / target, 50);
+            const timer = setInterval(() => {
+                current += 1;
+                el.textContent = current;
+                if (current >= target) clearInterval(timer);
+            }, stepTime);
+        }
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>

@@ -96,6 +96,28 @@ const CVE_DATA = {
     ],
     "kves": [
         {
+            "id": "KVE-2024-11321",
+            "title": {
+                "en": "test",
+                "ko": "test"
+            },
+            "impact": "none",
+            "target": "test",
+            "summary": {
+                "en": "dd",
+                "ko": "dd"
+            },
+            "advisory": "",
+            "contributors": [
+                "drkim",
+                "redyank",
+                "dyingman1",
+                "HiHyeonji",
+                "TEST_GIT"
+            ],
+            "severity": "moderate"
+        },
+        {
             "id": "KVE-2025-0142",
             "title": {
                 "en": "Confidential Vulnerability Research",

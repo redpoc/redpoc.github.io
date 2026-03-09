@@ -30,6 +30,11 @@ const translations = {
         index_card2_desc: 'Simulating advanced persistent threats (APT) to test and improve organizational detection and response capabilities.',
         index_card3_title: 'Security Tooling',
         index_card3_desc: 'Building open-source offensive security tools to automate exploitation and payload generation, aiding the research community.',
+        
+        // --- Stats Dashboard ---
+        stats_total_discoveries: 'Total Discoveries',
+        stats_critical_impact: 'Critical Impact',
+        stats_secured_assets: 'Secured Assets',
 
         // --- cve.html ---
         cve_badge: 'Official Disclosures',
@@ -100,6 +105,11 @@ const translations = {
         index_card2_desc: '고급 지속 위협(APT)을 시뮬레이션하여 조직의 탐지 및 대응 역량을 테스트하고 개선합니다.',
         index_card3_title: '보안 도구 개발',
         index_card3_desc: '익스플로잇 자동화 및 페이로드 생성을 위한 오픈소스 오펜시브 보안 도구를 개발하여 연구 커뮤니티를 지원합니다.',
+
+        // --- Stats Dashboard ---
+        stats_total_discoveries: '총 취약점 발굴',
+        stats_critical_impact: '크리티컬 취약점',
+        stats_secured_assets: '보호된 자산',
 
         // --- cve.html ---
         cve_badge: '공식 취약점 제보',
