@@ -74,7 +74,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
+            padding: 20px 30px 20px 13px; /* Balanced left padding to 13px */
             cursor: pointer;
         }
 
@@ -89,11 +89,20 @@
             color: var(--primary-red);
             font-weight: 700;
             font-size: 1.1rem;
+            flex: 0 0 160px;
         }
 
         .accordion-title {
             font-weight: 600;
             color: var(--text-main);
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .accordion-header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         /* --- Multi-Contributor Group --- */
@@ -393,15 +402,16 @@
             .accordion-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 15px;
-                padding: 20px;
+                gap: 11px;
+                padding: 14px;
             }
 
             .header-contributor, .contributor-group {
                 margin-left: 0;
-                width: 100%;
-                justify-content: flex-start;
-                padding: 10px;
+                width: auto; /* Reduced width to match PC style */
+                justify-content: center;
+                padding: 6px 14px;
+                align-self: center; /* Center the box itself */
             }
 
             .accordion-toggle {
@@ -411,8 +421,19 @@
             }
 
             .accordion-tag {
-                font-size: 1.1rem;
+                font-size: 1.3rem; /* Increased font size for mobile */
                 margin-bottom: 5px;
+                flex: none;
+                width: auto;
+                font-weight: 800; /* Extra bold for visibility */
+            }
+
+            .accordion-header-left, .accordion-header-right {
+                width: 100%;
+                justify-content: center; /* Centered for better mobile look */
+                align-items: center;
+                gap: 10px;
+                text-align: center;
             }
 
             .meta-dashboard {
@@ -563,9 +584,11 @@
                         <div class="accordion-header-left">
                             <span class="accordion-tag">${item.id}</span>
                             <span class="accordion-title">${item.title[lang]}</span>
-                            ${contributorHTML}
                         </div>
-                        <div class="accordion-toggle">+</div>
+                        <div class="accordion-header-right">
+                            ${contributorHTML}
+                            <div class="accordion-toggle">+</div>
+                        </div>
                     </div>
                     <div class="accordion-body">
                         <div class="accordion-body-inner">
@@ -583,7 +606,7 @@
                             <p>${item.summary[lang]}</p>
                             <div style="margin-top:20px; display:flex; justify-content:flex-end; gap: 10px;">
                                 <button class="btn" style="padding: 8px 15px; font-size: 0.8rem;" onclick="copyId('${item.id}', this)">${getI18n('cve_btn_copy')}</button>
-                                <a href="${item.advisory || item.detail_link || '#'}" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.8rem;">${item.advisory ? getI18n('cve1_btn') : getI18n('cve2_btn')}</a>
+                                <a href="${item.advisory || item.detail_link || '#'}" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.8rem;">${item.id.startsWith('CVE') ? getI18n('cve1_btn') : getI18n('cve2_btn')}</a>
                             </div>
                         </div>
                     </div>

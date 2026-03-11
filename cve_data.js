@@ -2,16 +2,91 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-20887",
+            "title": {
+                "en": "test cve",
+                "ko": "공동기여 테스트 cve"
+            },
+            "impact": "9.9",
+            "target": "test_cve",
+            "summary": {
+                "en": "test",
+                "ko": "test"
+            },
+            "advisory": "",
+            "contributors": [
+                "drkim",
+                "redyank",
+                "dyingman1",
+                "HiHyeonji"
+            ],
+            "severity": "critical"
+        },
+        {
+            "id": "CVE-2026-30862",
+            "title": {
+                "en": "Stored Cross-Site Scripting Leading to Privilege Escalation",
+                "ko": "Stored XSS를 통한 권한 상승 취약점"
+            },
+            "impact": "9.1",
+            "target": "Appsmith < 1.96",
+            "summary": {
+                "en": "A critical Stored Cross-Site Scripting (XSS) vulnerability exists in versions prior to 1.96. Due to improper neutralization of user-supplied input, an authenticated attacker can inject malicious scripts that are stored and later executed in other users’ browsers. By leveraging this vulnerability, an attacker may escalate privileges and potentially take over administrative functionality within the application.",
+                "ko": "1.96 이전 버전에서 Stored Cross-Site Scripting(XSS) 취약점이 존재한다. 사용자 입력값에 대한 적절한 필터링이 이루어지지 않아 공격자가 악성 스크립트를 저장할 수 있으며, 해당 스크립트는 다른 사용자가 페이지를 열 때 실행된다. 이를 통해 공격자는 권한 상승을 수행하거나 관리자 기능을 탈취할 수 있다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-30862",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "critical"
+        },
+        {
+            "id": "CVE-2026-25991",
+            "title": {
+                "en": "Blind SSRF via Redirect Bypass",
+                "ko": "URL 리다이렉트 검증 미흡으로 인한 인증 사용자 Blind SSRF 취약점"
+            },
+            "impact": "7.7",
+            "target": "Tandoor Recipes < 2.5.1",
+            "summary": {
+                "en": "A Blind Server-Side Request Forgery (SSRF) vulnerability exists in the Cookmate recipe import functionality prior to version 2.5.1. The application fails to properly validate the destination URL after following HTTP redirects. An authenticated user can exploit this issue to force the server to make requests to arbitrary internal or external resources. This may allow attackers to scan internal network services, access cloud instance metadata services, or disclose the server’s real IP address.",
+                "ko": "2.5.1 이전 버전의 Cookmate 레시피 Import 기능에서 Blind SSRF 취약점이 존재한다. HTTP 리다이렉트 이후 최종 목적지 URL에 대한 검증이 제대로 이루어지지 않아 인증된 사용자가 서버로 하여금 임의의 내부 또는 외부 자원에 요청을 보내도록 만들 수 있다. 이를 통해 내부 네트워크 포트 스캔, 클라우드 메타데이터 서비스 접근, 서버의 실제 IP 주소 노출 등의 공격이 가능하다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-25991",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "high"
+        },
+        {
+            "id": "CVE-2026-25964",
+            "title": {
+                "en": "Authenticated LFD via Path Traversal",
+                "ko": "Path Traversal을 통한 인증 사용자 임의 파일 읽기(LFD) 취약점"
+            },
+            "impact": "4.9",
+            "target": "Tandoor Recipes < 2.5.1",
+            "summary": {
+                "en": "An authenticated Local File Disclosure (LFD) vulnerability via Path Traversal exists in the Recipe Import functionality of the affected application prior to version 2.5.1. The issue is caused by insufficient validation of the file_path parameter in the local storage backend. An authenticated user with recipe import permissions can manipulate the parameter to traverse directories and read arbitrary files from the server, including sensitive system files or application configuration files.",
+                "ko": "2.5.1 이전 버전의 Recipe Import 기능에서 Path Traversal을 통한 Local File Disclosure(LFD) 취약점이 존재한다. Local 스토리지 처리 과정에서 file_path 파라미터에 대한 입력 검증이 충분히 이루어지지 않아 인증된 사용자가 디렉터리 경로를 조작할 수 있다. 이를 통해 공격자는 시스템 파일이나 애플리케이션 설정 파일 등 서버의 임의 파일을 읽을 수 있다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-25964",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "moderate"
+        },
+        {
             "id": "CVE-2026-25924",
             "title": {
-                "en": "Administrative RCE via Security Control Bypass",
-                "ko": "Administrative RCE via Security Control Bypass"
+                "en": "Access Control Bypass Leading to Remote Code Executio",
+                "ko": "접근제어 우회로 인한 원격 코드 실행(RCE) 취약점"
             },
             "impact": "8.4",
-            "target": "Kanboard <= 1.2.5",
+            "target": "Kanboard < 1.2.50",
             "summary": {
-                "en": "Kanboard is project management software focused on Kanban methodology. Prior to 1.2.50, a security control bypass vulnerability in Kanboard allows an authenticated administrator to achieve full Remote Code Execution (RCE). Although the application correctly hides the plugin installation interface when the PLUGIN_INSTALLER configuration is set to false, the underlying backend endpoint fails to verify this security setting. An attacker can exploit this oversight to force the server to download and install a malicious plugin, leading to arbitrary code execution.",
-                "ko": "Kanboard is project management software focused on Kanban methodology. Prior to 1.2.50, a security control bypass vulnerability in Kanboard allows an authenticated administrator to achieve full Remote Code Execution (RCE). Although the application correctly hides the plugin installation interface when the PLUGIN_INSTALLER configuration is set to false, the underlying backend endpoint fails to verify this security setting. An attacker can exploit this oversight to force the server to download and install a malicious plugin, leading to arbitrary code execution."
+                "en": "A security control bypass vulnerability exists in Kanboard prior to version 1.2.50. Although the application disables the plugin installation interface when the PLUGIN_INSTALLER configuration is set to false, the backend endpoint does not properly enforce this restriction. An authenticated administrator can exploit this flaw to force the server to download and install a malicious plugin, resulting in arbitrary code execution on the server.",
+                "ko": "Kanboard 1.2.50 이전 버전에서 플러그인 설치 기능과 관련된 접근제어 우회 취약점이 존재한다. PLUGIN_INSTALLER 설정이 false로 설정된 경우 사용자 인터페이스에서는 플러그인 설치 기능이 비활성화되지만, 서버의 백엔드 엔드포인트에서는 해당 설정에 대한 검증이 제대로 이루어지지 않는다. 인증된 관리자는 이를 악용하여 악성 플러그인을 서버에 다운로드 및 설치하도록 강제할 수 있으며, 이를 통해 서버에서 임의의 코드 실행(Remote Code Execution)이 가능하다."
             },
             "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-25924",
             "contributors": [
@@ -20,114 +95,36 @@ const CVE_DATA = {
             "severity": "high"
         },
         {
-            "id": "CVE-2026-30215",
-            "title": {
-                "en": "test131",
-                "ko": "ㅋㅋ"
-            },
-            "impact": "8.8",
-            "target": "hi",
-            "summary": {
-                "en": "zzz",
-                "ko": "ㅋㅋㅋ"
-            },
-            "advisory": "",
-            "contributors": [
-                "drkim"
-            ],
-            "severity": "high"
-        },
-        {
-            "id": "CVE-2026-20111",
-            "title": {
-                "en": "Multi-Vendor Driver Remote Code Execution",
-                "ko": "멀티 벤더 드라이버 원격 코드 실행"
-            },
-            "impact": "9.8",
-            "severity": "critical",
-            "target": "Generic Windows Drivers",
-            "contributors": [
-                "drkim",
-                "redyank",
-                "dyingman1"
-            ],
-            "summary": {
-                "en": "RCE and LPE vulnerability via stack overflow in IOCTL handlers of Windows kernel drivers.",
-                "ko": "Windows 커널 드라이버의 IOCTL 핸들러 내 스택 오버플로우를 이용한 권한 상승 및 원격 코드 실행 취약점입니다."
-            },
-            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-20111"
-        },
-        {
             "id": "CVE-2026-29780",
             "title": {
-                "ko": "공식 예제 스크립트 경로 탐색 취약점",
-                "en": "Path Traversal in Official Example Scripts"
+                "en": "Path Traversal Vulnerability in eml_parser Leading to Arbitrary File Write",
+                "ko": "eml_parser 라이브러리 내 경로 조작을 통한 임의 파일 쓰기 취약점"
             },
+            "impact": "5.5",
+            "target": "pip(eml-parser)",
+            "summary": {
+                "en": "A path traversal vulnerability exists in the official example script of eml_parser prior to version 2.0.1. It allows an attacker to write arbitrary files outside the intended directory by using unsanitized attachment filenames from crafted EML files.\n",
+                "ko": "eml_parser 2.0.1 미만 버전의 예제 스크립트에서 경로 조작 취약점이 발견되었습니다. 조작된 EML 파일의 첨부파일명을 검증 없이 사용하여, 지정된 디렉토리 외부의 경로에 임의 파일을 생성하거나 덮어쓸 수 있습니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-29780",
             "contributors": [
                 "redyank"
             ],
-            "impact": 5.5,
-            "severity": "moderate",
-            "target": "Python Email Examples",
-            "summary": {
-                "ko": "recursively_extract_attachments.py 파일 내 경로 검증 루틴 부재로 인해 임의 경로 파일 쓰기가 가능한 취약점입니다.",
-                "en": "Lack of path validation in recursively_extract_attachments.py allows arbitrary file write."
-            },
-            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-29780"
-        },
-        {
-            "id": "CVE-2026-15432",
-            "title": {
-                "en": "test11",
-                "ko": "테스트11"
-            },
-            "impact": "8.8",
-            "severity": "high",
-            "target": "npm",
-            "contributors": [
-                "drkim"
-            ],
-            "summary": {
-                "en": "test123",
-                "ko": "테스트123"
-            },
-            "advisory": "http://www.naver.com"
+            "severity": "moderate"
         }
     ],
     "kves": [
         {
-            "id": "KVE-2024-11321",
+            "id": "KVE-2025-0250",
             "title": {
-                "en": "test",
-                "ko": "test"
+                "en": "Improper Session Management Leading to Account Takeover via User Identifier Manipulation",
+                "ko": "사용자 식별자 변조를 통한 계정 탈취 취약점"
             },
-            "impact": "none",
-            "target": "test",
+            "impact": "9.1",
+            "target": "-",
             "summary": {
-                "en": "dd",
-                "ko": "dd"
-            },
-            "advisory": "",
-            "contributors": [
-                "drkim",
-                "redyank",
-                "dyingman1",
-                "HiHyeonji",
-                "TEST_GIT"
-            ],
-            "severity": "moderate"
-        },
-        {
-            "id": "KVE-2025-0142",
-            "title": {
-                "en": "Confidential Vulnerability Research",
-                "ko": "Confidential Vulnerability Research"
-            },
-            "impact": "9.0",
-            "target": "SK",
-            "summary": {
-                "en": "Confidential Vulnerability ResearchConfidential Vulnerability ResearchConfidential Vulnerability ResearchConfidential Vulnerability Research",
-                "ko": "Confidential Vulnerability ResearchConfidential Vulnerability ResearchConfidential Vulnerability ResearchConfidential Vulnerability Research"
+                "en": "A critical session management flaw was identified in a mobile application backend API. The application relied on a user identifier parameter included in HTTP requests to determine the acting user instead of validating the authenticated session. By modifying this identifier, an authenticated attacker could impersonate other users and perform actions on their behalf. This issue could result in complete account takeover, including access to personal information and the ability to perform privileged user actions.",
+                "ko": "모바일 애플리케이션 백엔드 API에서 세션 관리 및 사용자 식별 과정이 부적절하게 구현된 취약점이 발견되었습니다. 서버는 인증된 세션 정보와 사용자 식별자를 연계하여 검증하지 않고, 요청에 포함된 사용자 식별자 값을 신뢰하여 권한을 부여하고 있었습니다. 공격자는 HTTP 요청에 포함된 사용자 식별자를 다른 사용자 값으로 변경함으로써 해당 사용자의 권한으로 다양한 기능을 수행할 수 있으며, 이로 인해 계정 탈취 및 개인정보 접근 등의 보안 문제가 발생할 수 있습니다."
             },
             "advisory": "",
             "contributors": [
@@ -136,23 +133,148 @@ const CVE_DATA = {
             "severity": "critical"
         },
         {
-            "id": "KVE-2026-0001",
+            "id": "KVE-2025-0249",
             "title": {
-                "ko": "엔터프라이즈 플랫폼 인증 우회",
-                "en": "Enterprise Platform Auth Bypass"
+                "en": "Improper Authorization Leading to Unauthorized Access to User Information via API Parameter Manipulation",
+                "ko": "API 파라미터 조작을 통한 사용자 정보 무단 조회 취약점"
             },
-            "contributors": [
-                "drkim",
-                "HiHyeonji"
-            ],
-            "impact": 8.1,
-            "severity": "high",
-            "target": "Enterprise CMS",
+            "impact": "9.1",
+            "target": "-",
             "summary": {
-                "ko": "사용자 세션 토큰 검증 로직의 결함을 이용하여 관리자 계정 권한을 탈취할 수 있는 취약점입니다.",
-                "en": "Logic flaw in session token validation allows hijacking administrator privileges."
+                "en": "An authorization flaw was identified in a mobile application backend API responsible for retrieving user profile information. By manipulating a user identifier parameter in the request, an authenticated user could access personal information associated with other accounts without proper authorization checks. The vulnerability may allow attackers to enumerate user identifiers and collect sensitive information such as email addresses, phone numbers, and profile metadata.",
+                "ko": "모바일 애플리케이션 백엔드의 사용자 정보 조회 API에서 권한 검증이 미흡한 취약점이 발견되었습니다. 인증된 사용자가 요청 파라미터에 포함된 사용자 식별자 값을 조작할 경우, 서버는 별도의 인가 검증 없이 해당 사용자 계정의 정보를 반환합니다. 이를 통해 공격자는 사용자 식별자를 변경하며 다른 사용자 계정의 이메일, 휴대전화 번호 등 개인정보를 무단으로 조회할 수 있습니다."
             },
-            "detail_link": "#"
+            "advisory": "",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "critical"
+        },
+        {
+            "id": "KVE-2025-0248",
+            "title": {
+                "en": "Improper Input Validation Leading to Application Credit Manipulation",
+                "ko": "입력값 검증 미흡으로 인한 애플리케이션 크레딧 조작 취약점"
+            },
+            "impact": "7.2",
+            "target": "-",
+            "summary": {
+                "en": "A business logic vulnerability caused by insufficient input validation was identified in a mobile application platform. The server fails to properly validate certain client-controlled parameters involved in application credit processing. By manipulating these values, an attacker may influence the application’s internal transaction logic and alter the user’s credit balance in an unintended manner. This issue could allow malicious users to accumulate application credits illegitimately and potentially abuse the platform’s digital asset system.",
+                "ko": "모바일 애플리케이션 플랫폼에서 입력값 검증 미흡으로 인한 비즈니스 로직 취약점이 확인되었다. 서버 측에서 애플리케이션 크레딧 처리와 관련된 일부 클라이언트 전달 값에 대한 검증이 충분히 이루어지지 않아 공격자가 값을 조작할 수 있다. 이를 통해 애플리케이션의 내부 트랜잭션 로직에 영향을 주어 사용자의 크레딧 잔액을 의도하지 않은 방식으로 변경할 수 있으며, 결과적으로 서비스의 디지털 자산 시스템이 악용될 가능성이 있다."
+            },
+            "advisory": "",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "high"
+        },
+        {
+            "id": "KVE-2025-0142",
+            "title": {
+                "en": "Improper Input Validation Leading to Reward Manipulation",
+                "ko": "입력값 검증 미흡으로 인한 보상 포인트 조작 취약점"
+            },
+            "impact": "7.0",
+            "target": "-",
+            "summary": {
+                "en": "A business logic vulnerability caused by improper input validation was identified in a mobile reward platform application. The server fails to sufficiently validate certain client-supplied parameters related to reward processing. By manipulating these values, an attacker could influence the application’s internal reward calculation logic and obtain points in an unintended manner. This issue could allow malicious users to accumulate rewards illegitimately and disrupt the integrity of the platform’s reward system.",
+                "ko": "모바일 리워드 플랫폼 애플리케이션에서 입력값 검증 미흡으로 인한 비즈니스 로직 취약점이 확인되었다. 서버 측에서 클라이언트가 전달하는 일부 파라미터에 대한 검증이 충분히 이루어지지 않아 공격자가 값을 조작할 수 있으며, 이를 통해 애플리케이션의 보상 계산 로직에 영향을 주어 의도하지 않은 방식으로 포인트를 획득할 수 있다. 이러한 취약점은 서비스의 보상 시스템 무결성을 훼손할 가능성이 있다."
+            },
+            "advisory": "",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "high"
+        },
+        {
+            "id": "KVE-2026-0167",
+            "title": {
+                "en": "Insecure storage of API Key leading to unauthorized API consumption",
+                "ko": "안전하지 않은 API키를 이용한 인한 비인가된 API 무단 사용"
+            },
+            "impact": "5.3",
+            "target": "-",
+            "summary": {
+                "en": "The application exposes an unrestricted Google API Key that is directly linked to the organization's Google Cloud Billing account. Since Google Maps is a usage-based paid service, an attacker can exploit this key to incur unauthorized financial costs and exhaust the project's credit limits. This vulnerability represents a direct financial risk and Generate Denial-of-Service.",
+                "ko": "안드로이드 애플리케이션 소스 코드 내에 하드코딩된 Google API Key가 외부로 노출되는 취약점이 발견되었습니다. 해당 키는 구글 맵스와 같은 종량제 과금 서비스와 연동되어 있으나, 사용 범위에 대한 적절한 제한 설정이 누락되어 있어 직접적인 경제적 타격 및 서비스 거부 반응을 유발합니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "KVE-2026-0154",
+            "title": {
+                "en": "Insecure Direct Object Reference (IDOR) leading to Unauthorized PII Disclosure via Member ID",
+                "ko": "회원번호 변조를 통한 개인정보 무단 조회 취약점"
+            },
+            "impact": "7.5",
+            "target": "-",
+            "summary": {
+                "en": "A critical Insecure Direct Object Reference (IDOR) vulnerability was identified in the user profile retrieval module. The application fails to perform an access control check, allowing an attacker to access sensitive Personal Identifiable Information (PII) of other users by simply modifying the Member ID parameter in the request.",
+                "ko": "사용자 프로필 조회 모듈에서 적절한 접근 제어(Access Control) 검증이 이루어지지 않아 발생하는 IDOR(부적절한 직접 객체 참조) 취약점이 발견되었습니다. 공격자는 요청 패킷 내의 회원번호(Member ID) 파라미터를 타인의 번호로 변조하는 것만으로, 별도의 패스워드 인증 없이 민감한 개인정보(PII)를 무단으로 열람할 수 있습니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "high"
+        },
+        {
+            "id": "KVE-2026-0141",
+            "title": {
+                "en": "Insecure storage of API Key leading to unauthorized API consumption",
+                "ko": "안전하지 않은 API키를 이용한 인한 비인가된 API 무단 사용"
+            },
+            "impact": "5.3",
+            "target": "-",
+            "summary": {
+                "en": "The application exposes an unrestricted Google API Key that is directly linked to the organization's Google Cloud Billing account. Since Google Maps is a usage-based paid service, an attacker can exploit this key to incur unauthorized financial costs and exhaust the project's credit limits. This vulnerability represents a direct financial risk and Generate Denial-of-Service.",
+                "ko": "안드로이드 애플리케이션 소스 코드 내에 하드코딩된 Google API Key가 외부로 노출되는 취약점이 발견되었습니다. 해당 키는 구글 맵스와 같은 종량제 과금 서비스와 연동되어 있으나, 사용 범위에 대한 적절한 제한 설정이 누락되어 있어 직접적인 경제적 타격 및 서비스 거부 반응을 유발합니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "KVE-2026-0118",
+            "title": {
+                "en": "Unauthorized Access to National Teacher Information via Broken Access Control in Childcare Service Mobile App",
+                "ko": "영유아 교육 서비스 앱 내 권한 검증 미흡을 통한 전국 교사 개인정보 무단 열람 취약점"
+            },
+            "impact": "9.1",
+            "target": "-",
+            "summary": {
+                "en": "The mobile app's REST API lacks proper authorization checks, allowing standard parent accounts to bypass ownership verification. This enables unauthorized access to sensitive personal data (real names, photos, IDs) of over 610,000 teachers nationwide.",
+                "ko": "앱 REST API의 권한 검증 미흡으로 부모 계정이 소유권 확인을 우회하여 전국 교사 61만 명의 개인정보를 무단 열람할 수 있는 취약점입니다. API 요청 변조를 통해 타 기관 교사의 실명, 사진, 계정 ID 등 민감 정보가 대규모로 노출될 수 있습니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "critical"
+        },
+        {
+            "id": "KVE-2025-0243",
+            "title": {
+                "en": "Exposure of Hardcoded Database Credentials and Encryption Keys in Android Application",
+                "ko": "Android 애플리케이션 내 하드코딩된 데이터베이스 인증 정보 및 암호화 키 노출 취약점"
+            },
+            "impact": "7.5",
+            "target": "-",
+            "summary": {
+                "en": "The Android application contains hardcoded database credentials (ID, Password, URL) and encryption keys within its source code. An attacker can easily retrieve this sensitive information by decompiling the APK file. This vulnerability violates security best practices for credential protection and secure data storage, potentially leading to unauthorized database access.",
+                "ko": "Android 애플리케이션 소스 코드 내에 데이터베이스 접속 정보(ID, 비밀번호, 접속 URL) 및 암호화 키가 하드코딩되어 있습니다. 공격자는 APK 디컴파일을 통해 이러한 민감 정보를 쉽게 탈취할 수 있으며, 이는 인증 정보 보호 및 안전한 저장에 관한 보안 권고를 위반합니다. 이를 통해 외부인이 데이터베이스에 무단으로 접근할 위험이 있습니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "high"
         }
     ]
 };
