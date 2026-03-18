@@ -5,7 +5,7 @@ import os
 import re
 import webbrowser
 
-PORT = 8080
+PORT = 8088
 DATA_FILES = {
     'cve': 'cve_data.js',
     'research': 'research_data.js',

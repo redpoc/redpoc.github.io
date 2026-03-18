@@ -2,6 +2,42 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-33147",
+            "title": {
+                "en": "Stack-based Buffer Overflow in gmt_remote_dataset_id",
+                "ko": "gmt_remote_dataset_id 내 스택 기반 버퍼 오버플로우"
+            },
+            "impact": "7.3",
+            "target": "gmt lib",
+            "summary": {
+                "en": "A stack-based buffer overflow vulnerability was identified in the gmt_remote_dataset_id function within src/gmt_remote.c. This issue occurs when a specially crafted long string is passed as a dataset identifier (e.g., via the which module), leading to a crash or potential arbitrary code execution.",
+                "ko": "데이터셋 식별자(예: which 모듈을 통해 전달됨)로 특수하게 조작된 긴 문자열이 입력될 때, 고정된 크기의 스택 버퍼를 초과하여 복사하면서 발생하는 취약점입니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "high"
+        },
+        {
+            "id": "CVE-2026-33154",
+            "title": {
+                "en": "Remote Code Execution (RCE) via Insecure Template Evaluation in @jinja Resolver",
+                "ko": "@jinja 리졸버의 안전하지 않은 템플릿 평가를 통한 원격 코드 실행(RCE)"
+            },
+            "impact": "7.5",
+            "target": "dynaconf",
+            "summary": {
+                "en": "Dynaconf is vulnerable to Server-Side Template Injection (SSTI) due to unsafe template evaluation in the @Jinja resolver.\nWhen the jinja2 package is installed, Dynaconf evaluates template expressions embedded in configuration values without a sandboxed environment.",
+                "ko": "Dynaconf 라이브러리에서 jinja2 패키지가 설치된 경우, 설정값에 포함된 템플릿 표현식을 평가할 때 샌드박스(Sandbox) 환경을 사용하지 않아 발생하는 취약점입니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "high"
+        },
+        {
             "id": "CVE-2026-20887",
             "title": {
                 "en": "test cve",
