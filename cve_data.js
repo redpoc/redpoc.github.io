@@ -8,7 +8,7 @@ const CVE_DATA = {
                 "ko": "파라미터 기본값의 shell() 확장을 통한 Command Injection"
             },
             "impact": "8.8",
-            "target": "pip(intake)",
+            "target": "intake <= 2.0.9",
             "summary": {
                 "en": "The shell() syntax within parameter default values appears to be automatically expanded during the catalog parsing process.\nIf a catalog contains a parameter default such as shell(), the command may be executed when the catalog source is accessed.\nThis means that if a user loads a malicious catalog YAML, embedded commands could execute on the host system.\nThis behavior could potentially be classified as CWE-78: OS Command Injection / Unsafe Shell Expansion.",
                 "ko": "파라미터 기본값에 포함된 shell() 구문은 카탈로그 파싱 과정에서 자동으로 확장되는 것으로 보입니다.\n카탈로그에 shell() 형태의 기본값이 포함되어 있을 경우, 해당 카탈로그 소스를 로드하는 시점에 명령이 실행될 수 있습니다.\n\n이는 사용자가 악의적으로 조작된 카탈로그 YAML 파일을 로드할 경우, 내부에 삽입된 명령이 호스트 시스템에서 실행될 수 있음을 의미합니다.\n\n따라서 이 동작은 CWE-78: OS Command Injection (운영체제 명령어 인젝션) 또는 Unsafe Shell Expansion으로 분류될 수 있습니다."
@@ -26,7 +26,7 @@ const CVE_DATA = {
                 "ko": "gmt_remote_dataset_id 내 스택 기반 버퍼 오버플로우"
             },
             "impact": "7.3",
-            "target": "pip(gmt)",
+            "target": "GenericMappingTools/gmt (C/C++)<= 6.6.0",
             "summary": {
                 "en": "A stack-based buffer overflow vulnerability was identified in the gmt_remote_dataset_id function within src/gmt_remote.c. This issue occurs when a specially crafted long string is passed as a dataset identifier (e.g., via the which module), leading to a crash or potential arbitrary code execution.",
                 "ko": "데이터셋 식별자(예: which 모듈을 통해 전달됨)로 특수하게 조작된 긴 문자열이 입력될 때, 고정된 크기의 스택 버퍼를 초과하여 복사하면서 발생하는 취약점입니다."
@@ -44,7 +44,7 @@ const CVE_DATA = {
                 "ko": "@jinja 리졸버의 안전하지 않은 템플릿 평가를 통한 원격 코드 실행(RCE)"
             },
             "impact": "7.5",
-            "target": "pip(dynaconf)",
+            "target": "dynaconf<= 3.2.12",
             "summary": {
                 "en": "Dynaconf is vulnerable to Server-Side Template Injection (SSTI) due to unsafe template evaluation in the @Jinja resolver.\nWhen the jinja2 package is installed, Dynaconf evaluates template expressions embedded in configuration values without a sandboxed environment.",
                 "ko": "Dynaconf 라이브러리에서 jinja2 패키지가 설치된 경우, 설정값에 포함된 템플릿 표현식을 평가할 때 샌드박스(Sandbox) 환경을 사용하지 않아 발생하는 취약점입니다."
@@ -155,7 +155,7 @@ const CVE_DATA = {
                 "ko": "eml_parser 라이브러리 내 경로 조작을 통한 임의 파일 쓰기 취약점"
             },
             "impact": "5.5",
-            "target": "pip(eml-parser)",
+            "target": "eml-parser< 2.0.1",
             "summary": {
                 "en": "A path traversal vulnerability exists in the official example script of eml_parser prior to version 2.0.1. It allows an attacker to write arbitrary files outside the intended directory by using unsanitized attachment filenames from crafted EML files.\n",
                 "ko": "eml_parser 2.0.1 미만 버전의 예제 스크립트에서 경로 조작 취약점이 발견되었습니다. 조작된 EML 파일의 첨부파일명을 검증 없이 사용하여, 지정된 디렉토리 외부의 경로에 임의 파일을 생성하거나 덮어쓸 수 있습니다."
