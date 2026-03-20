@@ -2,6 +2,24 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-32321",
+            "title": {
+                "en": "Authenticated Time-based Blind SQL Injection in ClipBucket v5",
+                "ko": "ClipBucket v5 내 인증된 사용자에 의한 시차 기반 블라인드 SQL 인젝션(Time-based Blind SQLi) 취약점"
+            },
+            "impact": "8.8",
+            "target": "ClipBucket v5 (version prior to 5.5.3 #80)",
+            "summary": {
+                "en": "An authenticated time-based blind SQL injection vulnerability exists in ClipBucket prior to 5.5.3 #80 within the actions/ajax.php endpoint. Due to insufficient input sanitization of the userid parameter, an authenticated attacker can execute arbitrary SQL queries, leading to full database disclosure and potential administrative account takeover.",
+                "ko": "ClipBucket 5.5.3 #80 이전 버전의 actions/ajax.php 엔드포인트에서 인증된 사용자가 수행할 수 있는 시차 기반 블라인드 SQL 인젝션 취약점이 발견되었습니다. userid 파라미터에 대한 입력값 검증이 미흡하여, 공격자가 임의의 SQL 쿼리를 실행함으로써 데이터베이스 전체 정보를 유출하거나 관리자 계정을 탈취할 수 있는 위험이 있습니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-32321",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "high"
+        },
+        {
             "id": "CVE-2026-33310",
             "title": {
                 "en": "Command Injection via shell() Expansion in Parameter Defaults",
