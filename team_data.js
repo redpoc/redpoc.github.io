@@ -52,19 +52,6 @@ const TEAM_DATA = {
             },
             "github": "dyingman1",
             "img": "https://github.com/HiHyeonji.png"
-        },
-        "TEST_GIT": {
-            "name": "김테스트",
-            "role": {
-                "en": "test",
-                "ko": "테스트"
-            },
-            "desc": {
-                "en": "hi",
-                "ko": "테스트"
-            },
-            "github": "",
-            "img": "https://github.com/.png"
         }
     }
 };

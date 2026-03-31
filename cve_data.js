@@ -2,6 +2,42 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-34444",
+            "title": {
+                "en": "Sandbox escape and RCE due to incomplete attribute_filter enforcement in getattr/setattr\t",
+                "ko": "getattr/setattr에서 attribute_filter 적용 미흡으로 인한 샌드박스 탈출 및 원격 코드 실행(RCE)"
+            },
+            "impact": "",
+            "target": "lupa<= 2.6",
+            "summary": {
+                "en": "The attribute_filter in the Lupa library is intended to restrict access to sensitive Python attributes when exposing objects to Lua. However, the filter is not consistently applied when attributes are accessed through built-in functions like getattr and setattr. This allows an attacker to bypass the intended restrictions and eventually achieve arbitrary code execution.",
+                "ko": "Lupa 라이브러리의 attribute_filter는 Lua에 객체를 노출할 때 민감한 Python 속성에 대한 접근을 제한하기 위해 설계되었습니다.\n\n하지만 getattr, setattr와 같은 내장 함수를 통해 속성에 접근하는 경우에는 해당 필터가 일관되게 적용되지 않습니다. 이로 인해 공격자는 의도된 제한을 우회할 수 있으며, 결국 임의 코드 실행으로 이어질 수 있습니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "CVE-2026-33752",
+            "title": {
+                "en": "Redirect-based SSRF leading to internal network access in curl_cffi (with TLS impersonation bypass)",
+                "ko": "리다이렉트 기반 SSRF로 인해 curl_cffi에서 내부 네트워크 접근이 가능하며, TLS 위장 기능을 통해 보안 통제를 우회할 수 있는 취약점"
+            },
+            "impact": "8.6",
+            "target": "curl-cffi<=v0.15.0b4",
+            "summary": {
+                "en": "curl_cffi does not restrict requests to internal IP ranges, and follows redirects automatically via the underlying libcurl.\n\nBecause of this, an attacker-controlled URL can redirect requests to internal services such as cloud metadata endpoints. In addition, curl_cffi’s TLS impersonation feature can make these requests appear as legitimate browser traffic, which may bypass certain network controls.",
+                "ko": "curl_cffi는 내부 IP 대역으로의 요청을 제한하지 않으며, 내부적으로 사용하는 libcurl을 통해 리다이렉트를 자동으로 따라갑니다.\n\n이로 인해 공격자가 제어하는 URL을 통해 요청을 내부 서비스(예: 클라우드 메타데이터 엔드포인트)로 리다이렉트시킬 수 있습니다. 또한 curl_cffi의 TLS 위장(impersonation) 기능을 사용하면 이러한 요청이 정상적인 브라우저 트래픽처럼 보이게 되어, 일부 네트워크 보안 장비를 우회할 수 있습니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "high"
+        },
+        {
             "id": "CVE-2026-32321",
             "title": {
                 "en": "Authenticated Time-based Blind SQL Injection in ClipBucket v5",
