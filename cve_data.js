@@ -2,6 +2,24 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2025-62429",
+            "title": {
+                "en": "Improper Input Sanitization Leading to Remote Code Execution",
+                "ko": "입력값 검증 미흡으로 인한 원격 코드 실행(RCE) 취약점"
+            },
+            "impact": "7.2",
+            "target": "ClipBucket v5 < 5.5.2 #147",
+            "summary": {
+                "en": "A code injection vulnerability exists in versions prior to 5.5.2 #147 due to improper sanitization of user-supplied input. A specific parameter in a backend endpoint is directly embedded into executable PHP code without sufficient validation. An authenticated attacker with elevated privileges can exploit this flaw to inject and execute arbitrary PHP code on the server, resulting in remote code execution.",
+                "ko": "5.5.2 #147 이전 버전에서 사용자 입력값 검증 미흡으로 인한 코드 인젝션 취약점이 존재한다. 특정 파라미터 값이 충분한 검증 없이 서버 측 PHP 코드에 직접 삽입되어 실행되며, 공격자는 이를 악용하여 임의의 PHP 코드를 실행할 수 있다. 해당 취약점은 인증된 고권한 사용자가 악용할 경우 서버에서 원격 코드 실행(Remote Code Execution)을 가능하게 한다."
+            },
+            "advisory": "https://github.com/MacWarrior/clipbucket-v5/security/advisories/GHSA-3x4g-x3gv-rjmq",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "high"
+        },
+        {
             "id": "CVE-2026-34444",
             "title": {
                 "en": "Sandbox escape and RCE due to incomplete attribute_filter enforcement in getattr/setattr\t",
