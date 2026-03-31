@@ -223,6 +223,24 @@ const CVE_DATA = {
     ],
     "kves": [
         {
+            "id": "KVE-2026-0325",
+            "title": {
+                "en": "Insecure Direct Object Reference (IDOR) via manipulation of the org_part parameter in hotel reservation lookup",
+                "ko": "호텔 코드(org_part) 파라미터 조작을 통한 타 사용자 예약 정보 열람(IDOR)"
+            },
+            "impact": "none",
+            "target": "mobile",
+            "summary": {
+                "en": "The hotel reservation lookup API lacks proper server-side access control on the org_part parameter. As a result, an authenticated user can modify this value to access reservation details belonging to other organizations or users, including real names and stay information.",
+                "ko": "호텔 예약 조회 API에서 org_part 파라미터에 대한 서버 측 접근 통제가 미흡하여, 인증된 사용자가 임의로 값을 변경함으로써 타 부대/타 사용자 예약자의 실명 및 숙박 정보를 조회할 수 있음"
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "moderate"
+        },
+        {
             "id": "KVE-2025-0250",
             "title": {
                 "en": "Improper Session Management Leading to Account Takeover via User Identifier Manipulation",
