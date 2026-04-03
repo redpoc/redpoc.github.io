@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://redpoc.github.io/sitemap.xml
