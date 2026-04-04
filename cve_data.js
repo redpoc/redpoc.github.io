@@ -2,6 +2,24 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-35492",
+            "title": {
+                "en": "Path Traversal in PartitionedDataset via Unsanitized Partition Keys Leading to Arbitrary File Write",
+                "ko": "검증되지 않은 파티션 키로 인한 PartitionedDataset 경로 조작 취약점 및 임의 파일 쓰기"
+            },
+            "impact": "6.5",
+            "target": "kedro<9 .3.0",
+            "summary": {
+                "en": "The PartitionedDataset implementation constructs the final storage path by concatenating the base directory (dir_path) and the partition key (path) using a string join operation.\n\nBecause the partition identifier is not normalized or validated, it appears possible to include path traversal sequences such as ../ in the partition key. If partition identifiers are influenced by external input, this could allow files to be written outside the intended dataset directory.",
+                "ko": "PartitionedDataset 구현은 최종 저장 경로를 생성할 때, 기본 디렉터리(dir_path)와 파티션 키(path)를 단순 문자열 결합 방식으로 이어 붙입니다.\n\n이때 파티션 식별자에 대한 정규화(normalization)나 검증이 수행되지 않기 때문에, ../와 같은 경로 조작(Path Traversal) 문자열을 포함시킬 수 있습니다.\n\n만약 파티션 식별자가 외부 입력에 의해 제어될 수 있는 경우, 공격자는 이를 악용하여 의도된 데이터셋 디렉터리를 벗어난 위치에 파일을 생성하거나 덮어쓸 수 있습니다."
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "moderate"
+        },
+        {
             "id": "CVE-2025-62429",
             "title": {
                 "en": "Improper Input Sanitization Leading to Remote Code Execution",
