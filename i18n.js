@@ -21,7 +21,7 @@ const translations = {
     index_badge: "whoami",
     index_hero_title: "We find vulnerabilities before the adversaries do.",
     index_hero_desc:
-      "RedPoc is an elite offensive security research team focused on vulnerability discovery, advanced red teaming, and pushing the boundaries of cybersecurity.",
+      "RedPoc is an offensive security research team focused on vulnerability discovery, advanced red teaming, and pushing the boundaries of cybersecurity.",
     index_btn_cve: "View Our CVEs",
     index_btn_research: "Read Research",
     index_section_title: "Core Focus",
