@@ -2,6 +2,24 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-39376",
+            "title": {
+                "en": "Infinite redirect loop DoS via meta-refresh chain",
+                "ko": "meta-refresh 체인 이용 무한 리디렉션 루프 DoS"
+            },
+            "impact": "7.5",
+            "target": "fastfeedparser<= 0.5.9",
+            "summary": {
+                "en": "When parse() fetches a URL that returns an HTML page containing a <meta http-equiv=\"refresh\"> tag, it recursively calls itself with the redirect URL — with no depth limit, no visited-URL deduplication, and no redirect count cap. An attacker-controlled server that returns an infinite chain of HTML meta-refresh responses causes unbounded recursion, exhausting the Python call stack and crashing the process. This vulnerability can also be chained with the companion SSRF issue to reach internal network targets after bypassing the initial URL check.",
+                "ko": "parse ()는 <meta http-equiv=\"refresh\"> 태그가 포함된 HTML 페이지를 반환하는 URL을 가져올 때, 깊이 제한, 방문 URL 중복 제거, 리디렉션 횟수 제한 없이 재귀적으로 리디렉션 URL을 호출합니다. 공격자가 제어하는 서버가 HTML 메타 refresh 응답의 무한 체인을 반환하면 무한한 재귀가 발생하여 Python 호출 스택이 소진되고 프로세스가 중단됩니다. 이 취약점은 초기 URL 확인을 우회한 후 내부 네트워크 대상에 도달하기 위해 동반 SSRF 문제와도 연결될 수 있습니다"
+            },
+            "advisory": "",
+            "contributors": [
+                "redyank"
+            ],
+            "severity": "high"
+        },
+        {
             "id": "CVE-2026-35492",
             "title": {
                 "en": "Path Traversal in PartitionedDataset via Unsanitized Partition Keys Leading to Arbitrary File Write",
