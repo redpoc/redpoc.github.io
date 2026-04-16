@@ -40,17 +40,17 @@ const TEAM_DATA = {
             "github": "dyingman1",
             "img": "https://github.com/dyingman1.png"
         },
-        "HiHyeonji": {
+        "HIHYEONJI": {
             "name": "HiHyeonji",
             "role": {
-                "ko": "네트워크 엔지니어",
-                "en": "network test"
+                "en": "network engineer",
+                "ko": "네트워크 엔지니어"
             },
             "desc": {
-                "ko": "익스플로잇 개발, 버그 바운티 및 OS 내부 구조 분석에 집중합니다.",
-                "en": "Focuses on Exploit Development, Bug Bounty, and OS Internals."
+                "en": "Focuses on Exploit Development, Bug Bounty, and OS Internals.",
+                "ko": "익스플로잇 개발, 버그 바운티 및 OS 내부 구조 분석에 집중합니다."
             },
-            "github": "dyingman1",
+            "github": "HiHyeonji",
             "img": "https://github.com/HiHyeonji.png"
         }
     }

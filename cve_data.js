@@ -2,6 +2,27 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-40491",
+            "title": {
+                "en": "Arbitrary File Write via Path Traversal in gdown.extractall",
+                "ko": "gdown.extractall에서 경로 탐색을 통한 임의 파일 쓰기 취약점"
+            },
+            "impact": "6.5",
+            "target": "gdown <= 5.2.1",
+            "summary": {
+                "en": "The gdown library (tested on v5.2.1) is vulnerable to a Path Traversal attack within its extractall functionality. When extracting a maliciously crafted ZIP or TAR archive, the library fails to sanitize or validate the filenames of the archive members. This allow files to be written outside the intended destination directory, potentially leading to arbitrary file overwrite and Remote Code Execution (RCE).",
+                "ko": "gdown 라이브러리(v5.2.1에서 테스트됨)는 extractall 기능에서 경로 탐색(Path Traversal) 공격에 취약합니다. 악의적으로 조작된 ZIP 또는 TAR 아카이브를 추출할 때, 라이브러리가 아카이브 내부 파일 이름을 적절히 정제하거나 검증하지 않습니다. 이로 인해 의도된 대상 디렉터리 외부에 파일이 생성될 수 있으며, 잠재적으로 임의 파일 덮어쓰기 및 원격 코드 실행(RCE)으로 이어질 수 있습니다."
+            },
+            "advisory": "https://github.com/wkentaro/gdown/security/advisories/GHSA-76hw-p97h-883f",
+            "contributors": [
+                "drkim",
+                "redyank",
+                "dyingman1",
+                "HiHyeonji"
+            ],
+            "severity": "moderate"
+        },
+        {
             "id": "CVE-2026-39376",
             "title": {
                 "en": "Infinite redirect loop DoS via meta-refresh chain",
@@ -162,27 +183,6 @@ const CVE_DATA = {
                 "redyank"
             ],
             "severity": "high"
-        },
-        {
-            "id": "CVE-2026-20887",
-            "title": {
-                "en": "test cve",
-                "ko": "공동기여 테스트 cve"
-            },
-            "impact": "9.9",
-            "target": "test_cve",
-            "summary": {
-                "en": "test",
-                "ko": "test"
-            },
-            "advisory": "",
-            "contributors": [
-                "drkim",
-                "redyank",
-                "dyingman1",
-                "HiHyeonji"
-            ],
-            "severity": "critical"
         },
         {
             "id": "CVE-2026-30862",
