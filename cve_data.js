@@ -18,7 +18,7 @@ const CVE_DATA = {
                 "drkim",
                 "redyank",
                 "dyingman1",
-                "HiHyeonji"
+                "HIHYEONJI"
             ],
             "severity": "moderate"
         },
