@@ -3,6 +3,82 @@ const RESEARCH_DATA = {
     "articles": [
         {
             "tag": {
+                "en": "[PRIVESC][MISCONFIG]",
+                "ko": "[권한상승][설정오류]"
+            },
+            "title": {
+                "en": "Privilege Escalation via Misconfiguration",
+                "ko": "설정 오류 기반 권한 상승 시나리오"
+            },
+            "desc": {
+                "en": "Exploiting misconfigured services to escalate privileges within a system.\n",
+                "ko": "잘못된 서비스 설정을 악용하여 시스템 내 권한을 상승시키는 시나리오.\n"
+            },
+            "date": {
+                "en": "",
+                "ko": ""
+            },
+            "link": ""
+        },
+        {
+            "tag": {
+                "en": "[UPLOAD][RCE]",
+                "ko": "[UPLOAD][RCE]"
+            },
+            "title": {
+                "en": "Malicious File Upload to RCE",
+                "ko": "악성 파일 업로드 기반 RCE 시나리오"
+            },
+            "desc": {
+                "en": "Uploading crafted files to achieve remote code execution on vulnerable servers.\n",
+                "ko": "조작된 파일 업로드를 통해 서버에서 원격 코드 실행을 유도하는 공격 시나리오.\n"
+            },
+            "date": {
+                "en": "",
+                "ko": ""
+            },
+            "link": ""
+        },
+        {
+            "tag": {
+                "en": "[CREDENTIAL][TAKEOVER]",
+                "ko": "[자격증명][계정탈취]"
+            },
+            "title": {
+                "en": "Credential Harvesting and Account Takeover",
+                "ko": "자격 증명 탈취 및 계정 장악 시나리오"
+            },
+            "desc": {
+                "en": "Collecting user credentials and leveraging them for unauthorized account access.\n",
+                "ko": "사용자 자격 증명을 수집하고 이를 활용하여 계정을 장악하는 공격 시나리오.\n"
+            },
+            "date": {
+                "en": "",
+                "ko": ""
+            },
+            "link": ""
+        },
+        {
+            "tag": {
+                "en": "[CONTAINER][ESCAPE]",
+                "ko": "[CONTAINER][ESCAPE]"
+            },
+            "title": {
+                "en": "Container Escape and Host Compromise",
+                "ko": "컨테이너 탈출 및 호스트 장악 시나리오"
+            },
+            "desc": {
+                "en": "Breaking out of container isolation to gain control over the host system.\n",
+                "ko": "컨테이너 격리를 우회하여 호스트 시스템을 장악하는 공격 시나리오.\n"
+            },
+            "date": {
+                "en": "",
+                "ko": ""
+            },
+            "link": ""
+        },
+        {
+            "tag": {
                 "en": "[WIRELESS][MOBILE] ",
                 "ko": "[무선][모바일] "
             },
