@@ -2,6 +2,24 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-42525",
+            "title": {
+                "en": "Open redirect vulnerability",
+                "ko": "오픈 리다이렉트 취약점"
+            },
+            "impact": "4.3",
+            "target": "Jenkins",
+            "summary": {
+                "en": "The application does not restrict the redirect URL after login. This allows attackers to perform phishing attacks by having users go to a Jenkins URL that will forward them to a different site after successful authentication.\n",
+                "ko": "로그인 후 리디렉션 URL이 제한되어 있지 않아 이를 통해 공격자는 사용자가 인증에 성공한 후 다른 사이트로 전달하는 Jenkins URL로 이동하도록 하여 피싱 공격을 수행할 수 있습니다.\n"
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-42525",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
             "id": "CVE-2026-40491",
             "title": {
                 "en": "Arbitrary File Write via Path Traversal in gdown.extractall",
