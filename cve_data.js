@@ -2,6 +2,150 @@
 const CVE_DATA = {
     "cves": [
         {
+            "id": "CVE-2026-9674",
+            "title": {
+                "en": "CSRF vulnerability in Multijob Plugin allows resuming builds",
+                "ko": "Multijob Plugin CSRF 취약점"
+            },
+            "impact": "4.3",
+            "target": "Jenkis",
+            "summary": {
+                "en": "A CSRF vulnerability in Multijob Plugin 662.vd2e0001f6b_b_d and earlier allows attackers to resume failed Multijob builds due to the lack of mandatory POST requests.",
+                "ko": "Multijob Plugin 662.vd2e0001f6b_b_d 이하 버전은 POST 요청을 강제하지 않는 CSRF 취약점으로 인해, 공격자가 실패한 Multijob 빌드를 임의로 재개할 수 있습니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-9674",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "CVE-2026-10780",
+            "title": {
+                "en": "Static Block - Insecure Direct Object Reference to Authenticated Sensitive Information Disclosure",
+                "ko": "Static Block Plugin 민감 정보 노출 취약점"
+            },
+            "impact": "4.3",
+            "target": "Wordpress",
+            "summary": {
+                "en": "An IDOR vulnerability in the WordPress \"Static Block\" plugin's <= 2.2 allows bypass access controls and extract private block contents.",
+                "ko": "워드프레스 \"Static Block\" 플러그인은 쇼트코드 처리 과정의 IDOR 취약점으로 인해 기여자(Contributor) 등급 이상의 사용자가 관리자의 비공개 블록 콘텐츠를 탈취할 수 있습니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-10780",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "CVE-2026-8383",
+            "title": {
+                "en": "LearnPress - Unauthenticated Sensitive User Information Disclosure",
+                "ko": "LearnPress Plugin 민감 정보 노출 취약점"
+            },
+            "impact": "5.3",
+            "target": "Wordpress",
+            "summary": {
+                "en": "A missing permission check in LearnPress < 4.3.7 allows unauthenticated visitors to retrieve detailed user information, including roles, capabilities, and registration dates, via a crafted request.",
+                "ko": "해당 플러그인은 REST 엔드포인트의 권한 검사 누락으로 인해, 인증되지 않은 사용자가 조작된 요청을 통해 각 사용자의 역할, 상세 권한, 로케일 및 가입일 등의 정보를 탈취할 수 있습니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-8383",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "CVE-2026-48926",
+            "title": {
+                "en": "Missing permission check in Job Import Plugin allows enumerating credentials IDs",
+                "ko": "Job Import Plugin Missing permission 취약점"
+            },
+            "impact": "4.3",
+            "target": "Jenkins",
+            "summary": {
+                "en": "A missing permission check in Job Import Plugin 143.v044a_2e819b_27 and earlier allows attackers with Overall/Read permission to enumerate Jenkins credentials IDs for use in further credential-theft attacks.",
+                "ko": "Job Import Plugin 143.v044a_2e819b_27 이하 버전은 권한 검사 누락으로 인해 Overall/Read 권한의 공격자가 Jenkins 자격 증명(Credentials) ID를 열거하고 다른 취약점과 연계해 이를 탈취할 수 있습니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-48926",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "CVE-2026-48925",
+            "title": {
+                "en": "CSRF vulnerability in GitHub Integration Plugin",
+                "ko": "GitHub Integration Plugin CSRF 취약점"
+            },
+            "impact": "4.3",
+            "target": "Jenkins",
+            "summary": {
+                "en": "A CSRF vulnerability in GitHub Integration Plugin 0.7.3 and earlier allows attackers to trigger a pull request build due to the lack of mandatory POST requests.",
+                "ko": "GitHub Integration Plugin 0.7.3 이하 버전은 POST 요청을 강제하지 않는 CSRF 취약점으로 인해, 공격자가 풀 리퀘스트 빌드를 임의로 실행할 수 있습니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-48925",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "CVE-2026-48924",
+            "title": {
+                "en": "Open redirect vulnerability in Bitbucket OAuth Plugin",
+                "ko": "Bitbucket OAuth Plugin 오픈 리다이렉트 취약점"
+            },
+            "impact": "4.3",
+            "target": "Jenkins",
+            "summary": {
+                "en": "An open redirect vulnerability in Bitbucket OAuth Plugin 0.17 and earlier exists because the application stores an unvalidated Referer header during login and unconditionally redirects to it after successful authentication.",
+                "ko": "Bitbucket OAuth Plugin 0.17 이하 버전은 로그인 시 검증 없이 저장된 Referer 헤더 주소로 인증 완료 후 무조건 리다이렉트하여 오픈 리다이렉트 취약점이 발생합니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-48924",
+            "contributors": [
+                "dyingman1"
+            ],
+            "severity": "moderate"
+        },
+        {
+            "id": "CVE-2026-39310",
+            "title": {
+                "en": "Authentication Bypass in Clipper API for Electron (Desktop) Builds",
+                "ko": "Trilium 데스크톱 내 Clipper API 노출을 통한 완전한 인증 우회 취약점"
+            },
+            "impact": "8.6",
+            "target": "Trilium Notes < 0.102.2",
+            "summary": {
+                "en": "An authentication bypass vulnerability was identified in Trilium Notes Desktop when running in an Electron environment. The application explicitly disables authentication middleware for the Clipper API, exposing endpoints such as /api/clipper/notes to the network without passwords, tokens, or CSRF protection. A network-adjacent attacker can locate the instance via port scanning (e.g., port 37840) and interact with the unauthenticated handshake endpoint, leading to unauthorized data access, phishing, or local system compromise.",
+                "ko": "Trilium Notes 데스크톱 버전이 Electron 환경에서 실행될 때 발생하는 인증 우회 취약점입니다. 애플리케이션이 Clipper API에 대한 인증 미들웨어를 명시적으로 비활성화하여, /api/clipper/notes와 같은 엔드포인트가 패스워드, API 토큰 또는 CSRF 보호 없이 네트워크에 노출되는 문제가 존재합니다. 동일 네트워크상의 공격자가 포트 스캔(예: 기본 37840 포트)을 통해 unauthenticated 핸드셰이크 엔드포인트를 식별할 수 있으며, 이를 악용해 노트를 임의로 열람·수정하거나 피싱 페이로드를 주입하여 로컬 시스템을 침해할 수 있습니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-39310",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "high"
+        },
+        {
+            "id": "CVE-2026-39311",
+            "title": {
+                "en": "Stored XSS Leads to Unauthorized Remote Code Execution (RCE) via Unsanitized SVG Attachments",
+                "ko": "Trilium Notes 내 SVG 검증 우회 및 CSP 비활성화를 통한 무인증 원격 코드 실행(RCE) 취약점"
+            },
+            "impact": "6.8",
+            "target": "Trilium Notes < 0.102.2",
+            "summary": {
+                "en": "A critical security flaw was identified in Trilium Notes where a lack of SVG sanitization, combined with a disabled Content Security Policy (CSP), results in unauthenticated Remote Code Execution (RCE). Trilium serves SVG attachments as image/svg+xml without any input sanitization and explicitly disables Helmet's CSP middleware. Since the malicious SVG runs under the Same-Origin Policy, it can fetch the page to extract the csrfToken. Utilizing this token, the script can send a signed request to the /api/script/exec endpoint, executing arbitrary Node.js code on the server when an authenticated user simply views the shared SVG attachment.",
+                "ko": "Trilium Notes의 구조적 보안 결함들을 체이닝하여 무인증으로 서버 권한을 획득하는 원격 코드 실행(RCE) 취약점입니다. 애플리케이션 내에서 SVG 첨부파일을 처리할 때 별도의 산화(Sanitization) 과정 없이 image/svg+xml 타입으로 서빙하며, 보안 미들웨어(Helmet)의 콘텐츠 보안 정책(CSP)을 명시적으로 비활성화한 설계적 취약점이 존재합니다.\n\n이를 통해 공격자가 악성 스크립트가 삽입된 SVG 파일을 업로드하고, 인증된 사용자가 해당 첨부파일을 열람하도록 유도하면 동일 출처 정책(SOP) 내에서 스크립트가 실행됩니다. 이 스크립트는 내부 페이지에서 csrfToken을 탈취한 뒤, 서버의 /api/script/exec 엔드포인트로 인증된 요청을 전송하여 최종적으로 백엔드 서버에서 임의의 Node.js 코드를 실행(RCE)하게 만듭니다."
+            },
+            "advisory": "https://nvd.nist.gov/vuln/detail/CVE-2026-39311",
+            "contributors": [
+                "drkim"
+            ],
+            "severity": "moderate"
+        },
+        {
             "id": "CVE-2026-42525",
             "title": {
                 "en": "Open redirect vulnerability",
